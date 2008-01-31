@@ -71,7 +71,7 @@ class TableResult {
       .'?content=search&amp;id='.$row[listid].'">Contact Seller<br />#'.$row[listid].'</a></div>';
     $this->table[cat][] = $arrstrCW[$row['category']];
   
-    $row[description] = wordwrap($row[description], 30, ' ', 1);
+    $row[description] = wordwrap($row[description], 28, ' ', 1);
   
     switch ($row['category']) {
       case _CW_BOOK:

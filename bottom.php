@@ -15,7 +15,6 @@ Version 2.0
 
 <a href="http://jigsaw.w3.org/css-validator/check/referer"><img style="width:80px;height:15px;padding-top:1px" src="images/validcss.png" alt="Valid CSS!" /></a>
 
-<noscript><div><img src="http://uwsube.com/L10Apps/L10HC_Counter.php?acct=." alt="" /></div></noscript>
 </div>
 
 <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
@@ -39,19 +38,6 @@ Version 2.0
 </div>
 
 <div class="clear"></div>
-
-<script type="text/javascript">
-<!--
-var success=0; cRef=""; cRefType=""; cPage="";
-var L10qstr,L10pc,L10ref,L10a,L10pg; L10pg=document.URL.toString(); L10ref=document.referrer;
-if(top.document.location==document.referrer || (document.referrer == "" && top.document.location != "")) {L10ref=top.document.referrer;}
-L10qStr = "pg="+escape(L10pg)+"&ref="+escape(L10ref)+"&os="+escape(navigator.userAgent)+"&nn="+escape(navigator.appName)+"&nv="+escape(navigator.appVersion)+"&nl="+escape(navigator.language)+"&sl="+escape(navigator.systemLanguage)+"&sa="+success+"&cR="+escape(cRef)+"&cRT="+escape(cRefType)+"&cPg="+escape(cPage);
-if(navigator.appVersion.substring(0,1) > "3") { L10d = new Date(); L10qStr = L10qStr+"&cd="+screen.colorDepth+"&sx="+screen.width+"&sy="+screen.height+"&tz="+L10d.getTimezoneOffset();}
-if((location.href.substr(0,6)=="https:") || (location.href.substr(0,6)=="HTTPS:")) { L10pc="https"; } else { L10pc="http"; }
-img1 = new Image();
-img1.src = L10pc+'://uwsube.com/L10Apps/L10HC_Counter.php?'+L10qStr;
--->
-</script>
 
 </div>
 
