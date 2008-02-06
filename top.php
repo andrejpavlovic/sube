@@ -24,7 +24,7 @@ if (!isset($html_meta_keywords)) $html_meta_keywords = 'books, course notes, UW,
 <link rel="shortcut icon" href="images/favicon.ico" />
 <link rel="stylesheet" type="text/css" href="base.css" />
 <script src="wch.js" type="text/javascript"></script>
-<script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+
 </head>
 <body<? if (isset($content)) echo ' id="'.$content.'"' // this little bit of code allows for page-specific styles ?>>
 
