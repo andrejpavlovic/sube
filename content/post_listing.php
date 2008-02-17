@@ -24,7 +24,7 @@ switch ($cat) {
     break;
 
   case _CW_COURSE_NOTES: case _CW_HAND_NOTES: case _CW_EXAM:
-    $sidebar = course_table(1);
+    $sidebar = course_table(3);
     echo formEntry('<span class="red">*</span>Term:', formSelect($arrstrTERM, '<select name="term" style="width:110px;">', $term));
     echo formEntry('<span class="red">*</span>Year:', formSelect($arrstrYEAR, '<select name="year" style="width:110px;">', $year));
     break;

@@ -17,6 +17,12 @@ if (empty($row)) {
 	die();
 }
 
+// get posting course information
+$db->query( $db->safesql('SELECT course, number FROM '._CW_TABLE_COURSES.' WHERE listid = %i', array($_REQUEST['id'])) );
+while ($row2 = $db->fetch_array()) {
+	$courses[] = array('course' => $row2['course'], 'number' => $row2['number']);
+}
+
 $title = $row[title];
 $price = $row[price];
 $description = $row[description];
@@ -24,6 +30,7 @@ $time = date("F j, Y g:i a", $row['time']);
 
 $title_label = 'Title';
 $price_label = 'Price';
+$html_title = $row['title'];
 
 $category = $arrstrCW[$row[category]];
 
@@ -31,6 +38,12 @@ switch ($row[category]) {
   case _CW_COURSE_NOTES: case _CW_HAND_NOTES: case _CW_EXAM:
     $title_label = 'Term';
     $title = "$row[term] $row[year]";
+    $tmp = array();
+    for ($i=0; $i<sizeof($courses); $i++)
+    {
+    	$tmp[] = $courses[$i]['course'] . ' ' . $courses[$i]['number'];
+    }
+    $html_title = "$category - " . implode(', ', $tmp);
   break;
   case _HOUSING:
 	  $title_label = 'Address';
@@ -97,7 +110,6 @@ if (isset($_POST[submit])) {
 
 $id = htmlspecialchars(stripslashes($_GET['id']));
 
-$html_title = 'Contact Seller';
 $html_meta_robots = 'index,nofollow';
 require('top.php');
 

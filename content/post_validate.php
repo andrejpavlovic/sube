@@ -50,7 +50,7 @@ function validate_form($val_pass = true) {
       // check year in array
       if (!in_array($year, $GLOBALS['arrstrYEAR'])) return "You've somehow chosen an invalid term";
 
-      $error = validate_courses(1);
+      $error = validate_courses(3);
       if (!empty($error)) return $error;
 
       break;
