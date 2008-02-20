@@ -1,4 +1,5 @@
 <?
+
 if ($_REQUEST[type] === 'browse') {
   $title = 'Browse All Postings';
   $html_title = 'Browse All Courseware Postings';
@@ -81,6 +82,7 @@ $prev_page = $page - 1;
 
 if ($num_results) {
   $max_pages = intval($num_results/_LIMIT_PER_PAGE); // maximum pages to browse through
+  // get the right number of pages
   if ($num_results % _LIMIT_PER_PAGE) $max_pages++;
   $start_result = ($page-1)*_LIMIT_PER_PAGE+1;
   if ($page == $max_pages) {
@@ -88,63 +90,31 @@ if ($num_results) {
   } else {
     $end_result = $page * _LIMIT_PER_PAGE;
   }
-  //Insert list of pages at TOP 
-  echo "Results $start_result - $end_result of $num_results<br />";
-  echo "Page: ";
+  // print page list at top 
+  print_page_list($start_result, $end_result, $num_results, $max_pages);
 
-  if ($page != 1) echo "\n".'<a href="'.$_SERVER[PHP_SELF]."?content=search$request_type&amp;page=$prev_page\">Prev</a>";
-  if ($page != $max_pages) {
-  echo "\n".'<a href="'.$_SERVER[PHP_SELF]."?content=search$request_type&amp;page=$next_page\">Next<br /></a>";
-  } else {
-    echo "<br />";
-  }
-  for ($i=1; $i<=$max_pages; $i++) {
-    if ($i != $page)
-      echo "\n".'<a href="'.$_SERVER[PHP_SELF]."?content=search$request_type&amp;page=$i\">$i</a>";
-    else
-      echo "\n$i";
-  }
-  echo '<br /><br />';
-} else {
-  echo '<p class="msg">Your search did not match any listing.</p>';
-}
-
-if ($num_results) {
-$query = 'SELECT DISTINCT '._CW_TABLE.'.listid FROM '._CW_TABLE_CATEGORY.','._CW_TABLE.','._CW_TABLE_COURSES
+  $query = 'SELECT DISTINCT '._CW_TABLE.'.listid FROM '._CW_TABLE_CATEGORY.','._CW_TABLE.','._CW_TABLE_COURSES
   .' WHERE '._CW_TABLE_CATEGORY.'.code = '._CW_TABLE.'.category'
   .' AND '._CW_TABLE.'.listid = '._CW_TABLE_COURSES.'.listid'
   .' AND remove = 0'
   ." [ AND isbn  = '%S' ]";
 
-$query = $db->safesql($query, array($search_isbn));
-$limit = $db->safesql(' LIMIT %i,'._LIMIT_PER_PAGE, array(($page-1) * _LIMIT_PER_PAGE));
-$query = $query . " $all_search_parts" .' ORDER BY time DESC'. $limit;
+  $query = $db->safesql($query, array($search_isbn));
+  $limit = $db->safesql(' LIMIT %i,'._LIMIT_PER_PAGE, array(($page-1) * _LIMIT_PER_PAGE));
+  $query = $query . " $all_search_parts" .' ORDER BY time DESC'. $limit;
 
-$rs = $db->query( $query );
+  $rs = $db->query( $query );
 
-require_once 'include/search_functions.php';
-$table = format_results($rs);
-echo $table->printTable();
+  require_once 'include/search_functions.php';
+  $table = format_results($rs);
+  // print results
+  echo $table->printTable();
 
-  //Insert list of pages at BOTTOM
-  echo "Results $start_result - $end_result of $num_results<br />";
-  echo "Page: ";
+  // print page list at bottom
+  print_page_list($start_result, $end_result, $num_results, $max_pages);
 
-if($page != 1)  echo "\n".'<a href="'.$_SERVER[PHP_SELF]."?content=search$request_type&amp;page=$prev_page\">Prev</a>";
-  if ($page != $max_pages){
-    echo "\n".'<a href="'.$_SERVER[PHP_SELF]."?content=search$request_type&amp;page=$next_page\">Next<br /></a>";
-  } else {
-    echo "<br />";
-  }
-  for ($i=1; $i<=$max_pages; $i++) {
-    if ($i != $page)
-      echo "\n".'<a href="'.$_SERVER[PHP_SELF]."?content=search$request_type&amp;page=$i\">$i</a>";
-    else
-      echo "\n$i";
-  }
-  echo '<br /><br />';
 } else {
-  echo '<p class="msg">Your search did not match any listing.</p>';
+    echo '<p class="msg"><span class="red">Sorry, there are no results that match the given criteria.</span></p>';
 }
 
 echo '</div>';
@@ -199,4 +169,24 @@ function search_split_terms($terms) {
 
   return $return;
 }
+
+function print_page_list($start_result, $end_result, $num_results, $max_pages) {
+  $page = $_GET[page];
+  $next_page = $page + 1;
+  $prev_page = $page - 1;
+
+  echo "Results $start_result - $end_result of $num_results<br />";
+  echo "Page: ";
+
+  if ($page != 1) echo "\n".'<a href="'.$SERVER[PHP_SELF]."?content=search$request_type&amp;page=$prev_page\">Prev</a>";
+
+  if ($page != $max_pages)  echo "\n".'<a href="'.$_SERVER[PHP_SELF]."?content=search$request_type&amp;page=$next_page\">Next<br /></a>";
+  else echo "<br />";
+  
+  for ($i=1; $i<=$max_pages; $i++) {
+    if ($i != $page)  echo "\n".'<a href="'.$_SERVER[PHP_SELF]."?content=search$request_type&amp;page=$i\">$i</a>";
+    else echo "\n$i";
+  }
+}
+
 ?>
