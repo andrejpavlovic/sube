@@ -91,7 +91,7 @@ if ($num_results) {
     $end_result = $page * _LIMIT_PER_PAGE;
   }
   // print page list at top 
-  print_page_list($start_result, $end_result, $num_results, $max_pages);
+  print_page_list($start_result, $end_result, $num_results, $max_pages, $request_type);
 
   $query = 'SELECT DISTINCT '._CW_TABLE.'.listid FROM '._CW_TABLE_CATEGORY.','._CW_TABLE.','._CW_TABLE_COURSES
   .' WHERE '._CW_TABLE_CATEGORY.'.code = '._CW_TABLE.'.category'
@@ -111,7 +111,7 @@ if ($num_results) {
   echo $table->printTable();
 
   // print page list at bottom
-  print_page_list($start_result, $end_result, $num_results, $max_pages);
+  print_page_list($start_result, $end_result, $num_results, $max_pages, $request_type);
 
 } else {
     echo '<p class="msg"><span class="red">Sorry, there are no results that match the given criteria.</span></p>';
@@ -170,22 +170,25 @@ function search_split_terms($terms) {
   return $return;
 }
 
-function print_page_list($start_result, $end_result, $num_results, $max_pages) {
+function print_page_list($start_result, $end_result, $num_results, $max_pages, $request_type) {
   $page = $_GET[page];
   $next_page = $page + 1;
   $prev_page = $page - 1;
 
-  echo "Results $start_result - $end_result of $num_results<br />";
-  echo "Page: ";
+  echo "Results $start_result - $end_result of $num_results";
 
-  if ($page != 1) echo "\n".'<a href="'.$SERVER[PHP_SELF]."?content=search$request_type&amp;page=$prev_page\">Prev</a>";
+  if ($max_pages > 1)
+  {
+    if ($page != 1) echo "\n".'<a href="'.$SERVER[PHP_SELF]."?content=search$request_type&amp;page=$prev_page\">Prev</a>";
 
-  if ($page != $max_pages)  echo "\n".'<a href="'.$_SERVER[PHP_SELF]."?content=search$request_type&amp;page=$next_page\">Next<br /></a>";
-  else echo "<br />";
+    if ($page != $max_pages)  echo "\n".'<a href="'.$_SERVER[PHP_SELF]."?content=search$request_type&amp;page=$next_page\">Next</a>";
   
-  for ($i=1; $i<=$max_pages; $i++) {
-    if ($i != $page)  echo "\n".'<a href="'.$_SERVER[PHP_SELF]."?content=search$request_type&amp;page=$i\">$i</a>";
-    else echo "\n$i";
+    echo "<br />Page: ";
+  
+    for ($i=1; $i<=$max_pages; $i++) {
+      if ($i != $page)  echo "\n".'<a href="'.$_SERVER[PHP_SELF]."?content=search$request_type&amp;page=$i\">$i</a>";
+      else echo "\n$i";
+    }
   }
 }
 
