@@ -1,0 +1,5 @@
+Options +FollowSymLinks
+RewriteEngine On
+# Redirect from uwsube.com to www.uwsube.com
+RewriteCond %{HTTP_HOST} ^uwsube.com$ [NC]
+RewriteRule ^(.*)$ http://www.uwsube.com/$1 [R=301,L]
