@@ -17,22 +17,6 @@ Version 2.0
 
 </div>
 
-<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-<div style="float:right;padding-top:2px;padding-right:10px">
-<input type="hidden" name="cmd" value="_xclick" />
-<input type="hidden" name="business" value="donations@uwsube.com" />
-<input type="hidden" name="item_name" value="UWSUBE" />
-<input type="hidden" name="page_style" value="UWSUBE" />
-<input type="hidden" name="no_shipping" value="1" />
-<input type="hidden" name="no_note" value="1" />
-<input type="hidden" name="currency_code" value="CAD" />
-<input type="hidden" name="tax" value="0" />
-<input type="hidden" name="lc" value="CA" />
-<input type="hidden" name="bn" value="PP-DonationsBF" />
-<input type="image" src="images/paypal_donate.gif" name="submit" alt="Make a donation to UWSUBE through PayPal" style="width:62px;height:31px" />
-</div>
-</form>
-
 <div id="supporters">
 <a href="index.php?content=support">Our Supporters</a>
 </div>
