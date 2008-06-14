@@ -4,9 +4,9 @@ require 'include/global_data.php';
 
 //------------ Statistics ------------------
 
-$books_sold_query = 'SELECT COUNT(*) number, SUM(price) value FROM courseware WHERE remove = 1 AND category != '._HOUSING;
-$books_posted_query = 'SELECT COUNT(*) number, SUM(price) value FROM courseware WHERE remove = 0 AND category != '._HOUSING;
-$housing_sold_query = 'SELECT COUNT(*) number FROM courseware WHERE remove = 1 AND category = '._HOUSING;
+$books_sold_query = 'SELECT COUNT(*) number, SUM(price) `value` FROM courseware WHERE remove = 1 AND category != '._HOUSING.' AND `time` >= UNIX_TIMESTAMP(DATE_SUB(NOW(), INTERVAL 1 YEAR))';
+$books_posted_query = 'SELECT COUNT(*) number, SUM(price) `value` FROM courseware WHERE remove = 0 AND category != '._HOUSING;
+$housing_sold_query = 'SELECT COUNT(*) number FROM courseware WHERE remove = 1 AND category = '._HOUSING.' AND `time` >= UNIX_TIMESTAMP(DATE_SUB(NOW(), INTERVAL 1 YEAR))';
 $housing_posted_query = 'SELECT COUNT(*) number FROM courseware WHERE remove = 0 AND category = '._HOUSING;
 
 $db->query($books_sold_query);
@@ -39,12 +39,29 @@ require('top.php');
 
 <h1>Latest News</h1>
 
-<p>Students bought over <span class="style2"><?=$books_sold[number]?></span> courseware items (books, course notes, etc.) last year worth almost <span class="style2">$<?=$books_sold[value]?></span>! This year we hope to double that amount while constantly increasing the usability of our site. Founded and maintained by Univeristy of Waterloo students, UWSUBE allows you to buy/sell books, course notes, handwritten notes, exam papers, and housing absolutely <span class="style1">FREE</span>!</p> 
-<p>There are currently <span class="style2"><?=$books_posted[number]?></span> courseware items listed worth over <span class="style2">$<?=$books_posted[value]?></span>.</p>
+<p>
+	Students bought over <span class="style2"><?=number_format($books_sold[number], 0, '.', ',')?></span>
+	courseware items (books, course notes, etc.) last year worth almost
+	<span class="style2">$<?=number_format($books_sold[value], 2, '.', ',')?></span>!
+	This year we hope to double that amount while constantly increasing the usability of our site.
+	Founded and maintained by Univeristy of Waterloo students, UWSUBE allows you to buy/sell books,
+	course notes, handwritten notes, exam papers, and housing absolutely <span class="style1">FREE</span>!
+</p> 
+<p>
+	There are currently <span class="style2"><?=number_format($books_posted[number], 0, '.', ',')?></span>
+	courseware items listed worth over <span class="style2">$<?=number_format($books_posted[value], 2, '.', ',')?></span>.
+</p>
 
-<p><span class="style2">NO REGISTRATION NECESSARY</span>! UWSUBE is designed to make buying and selling your school items fast and painless. Just follow the 'Submit a Posting' link above.</p>
+<p>
+	<span class="style2">NO REGISTRATION NECESSARY</span>! UWSUBE is designed to make buying and selling your school
+	items fast and painless. Just follow the 'Submit a Posting' link above.
+</p>
 
-<p>There are also over <span class="style2"><?=$housing_posted[number]?></span> off campus housing postings available for you to choose from. <span class="style2"><?=$housing_sold[number]?></span> have already been rented out!</p>
+<p>
+	There are also over <span class="style2"><?=number_format($housing_posted[number], 0, '.', ',')?></span>
+	off campus housing postings available for you to choose from.
+	<span class="style2"><?=number_format($housing_sold[number], 0, '.', ',')?></span> have already been rented out in the last year!
+</p>
 
 <br />
 
