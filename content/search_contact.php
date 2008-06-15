@@ -111,6 +111,7 @@ if (isset($_POST[submit])) {
 $id = htmlspecialchars(stripslashes($_GET['id']));
 
 $html_meta_robots = 'index,nofollow';
+$html_meta_description = htmlentities(substr(html_entity_decode($description), 0, 180)) . '...';
 require('top.php');
 
 // Give link to google maps for housing postings
