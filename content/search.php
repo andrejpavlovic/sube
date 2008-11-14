@@ -26,6 +26,9 @@ switch ($error) {
   case _ERR_MESSAGE_EMPTY:
     $error = '<p class="msg"><span class="red">Please enter a message.</span></p>';
     break;
+  case _ERR_INVALID_SUM:
+    $error = '<p class="msg"><span class="red">Incorrect sum of the two numbers.</span></p>';
+    break;
   case _ERR_EMAIL_NOT_SENT:
     $error = '<p class="msg"><span class="red">Email not sent. Please try again. If problem presists contact administrator.</span></p>';
     break;

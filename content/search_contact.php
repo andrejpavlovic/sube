@@ -54,9 +54,15 @@ switch ($row[category]) {
 
 if (isset($_POST[submit])) {
   $replyemail = htmlspecialchars(stripslashes($_POST['replyemail']));
+  $number1 = intval($_POST['number1']);
+  $number2 = intval($_POST['number2']);
+  $sum = intval($_POST['sum']);
 
-  setcookie('user_email', $replyemail, time()+3600);
-  setcookie('seller_message', $message, time()+3600);
+  setcookie('user_email', $replyemail, time()+86400);
+  setcookie('seller_message', $message, time()+86400);
+  setcookie('number1', $number1, time()+86400);
+  setcookie('number2', $number2, time()+86400);
+  setcookie('sum', $sum, time()+86400);
 
   require 'content/post_validate.php';
 
@@ -65,6 +71,9 @@ if (isset($_POST[submit])) {
 
   if (!validate_email($replyemail))
     raise_error(_ERR_EMAIL);
+
+  if ($number1 + $number2 != $sum)
+    raise_error(_ERR_INVALID_SUM);
 
   $query = 'INSERT INTO '._CW_TABLE_CONTACT_SELLER." (listid, email, time, message) VALUES (%i, '%s', '".time()."', '%s')";
   $db->query( $db->safesql($query, array($_POST[id], $replyemail, $message)) );
@@ -95,7 +104,7 @@ if (isset($_POST[submit])) {
 
   // send email
   if (!$mail->send()) {
-    $error = new mailer(_ERROR_EMAIL, 'Error with sending email', 'The following email to '.$email.' regarding password reset was not sent successfully.\r\n\r\n\r\n'.$message);
+    $error = new mailer(_ERROR_EMAIL, 'Error with sending email', 'The following email to '.$email.' regarding contact seller was not sent successfully.\r\n\r\n\r\n'.$message);
     $error->send();
 
     raise_error(_ERR_EMAIL_NOT_SENT);
@@ -103,7 +112,10 @@ if (isset($_POST[submit])) {
 
   $db->query('UPDATE '._CW_TABLE_CONTACT_SELLER." SET sent = 1 WHERE id = $id");
 
-  setcookie('seller_message', '', time()-3600);
+  setcookie('seller_message', '', time()-86400);
+  setcookie('number1', '', time()-86400);
+  setcookie('number2', '', time()-86400);
+  setcookie('sum', '', time()-86400);
   raise_error(_SUCCESS);
 } // form submit, email end
 
@@ -118,6 +130,18 @@ require('top.php');
 if ($row[category] == _HOUSING)
 	$map_link = '&nbsp;<a href="http://maps.google.ca/maps?q='.$title.'+Waterloo+Ontario" target="_blank">Map</a>';
 
+if (!isset($_COOKIE['number1']))
+{
+	$number1 = rand(1, 5);
+	$number2 = rand(1, 5);
+	$sum = '';
+}
+else
+{
+	$number1 = $_COOKIE['number1'];
+	$number2 = $_COOKIE['number2'];
+	$sum = $_COOKIE['sum'];
+}
 ?>
 
 <div id="content" style="background-image:url(images/bg_search.jpg);">
@@ -132,7 +156,10 @@ if ($row[category] == _HOUSING)
 <?=formEntry("Time Posted:", $time ); ?>
 <?=formEntry('Message:', '<textarea name="message" cols="30" rows="8">'.$_COOKIE[seller_message].'</textarea>'); ?>
 <?=formEntry('Reply-Email:', '<input type="text" name="replyemail" style="width:160px;" value="'.$_COOKIE[user_email].'" />'); ?>
+<?=formEntry("$number1 + $number2 =", '<input type="text" name="sum" size="4" value="'.$sum.'" />'); ?>
 <br />
+<input type="hidden" name="number1" value="<?php echo $number1 ?>"/>
+<input type="hidden" name="number2" value="<?php echo $number2 ?>"/>
 <input type="hidden" name="content" value="search"/>
 <input type="hidden" name="id" value="<?=$id?>"/>
 <div class="center"><input type="submit" name="submit" value="Send Message"/></div>

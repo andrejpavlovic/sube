@@ -50,6 +50,7 @@ define('_ERR_NOT_MATCH', -12); // does not match
 define('_ERR_ILL_PASS', -13); // illegal password
 define('_ERR_MESSAGE_EMPTY', -14); // empty message
 define('_ERR_EMAIL_NOT_SENT', -15); // empty message
+define('_ERR_INVALID_SUM', -16); // empty message
 
 // Define a list of script and database errors
 define('_FAIL_UPDATE', -30); // failed to update database
