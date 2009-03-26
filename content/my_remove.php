@@ -47,7 +47,7 @@ switch ($row['category']) {
     $posting['Title'] = $row['title'];
     $posting['Course'] = $row['course'].' '.$row['number'];
     break;
-  case _CW_COURSE_NOTES: case _CW_HAND_NOTES: case _CW_EXAM:
+  case _CW_COURSE_NOTES: case _CW_HAND_NOTES:
     $posting['Term'] = $row['term'];
     $posting['Year'] = $row['year'];
     $posting['Course'] = $row['course'].' '.$row['number'];

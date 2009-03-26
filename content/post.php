@@ -44,7 +44,6 @@ require('top.php');
       <li><a href="index.php?content=post&amp;cat=<?=_CW_BOOK?>"><?=$arrstrCW[_CW_BOOK]?></a></li>
       <li><a href="index.php?content=post&amp;cat=<?=_CW_COURSE_NOTES?>"><?=$arrstrCW[_CW_COURSE_NOTES]?></a></li>
       <li><a href="index.php?content=post&amp;cat=<?=_CW_HAND_NOTES?>"><?=$arrstrCW[_CW_HAND_NOTES]?></a></li>
-      <li><a href="index.php?content=post&amp;cat=<?=_CW_EXAM?>"><?=$arrstrCW[_CW_EXAM]?></a></li>
       <li><a href="index.php?content=post&amp;cat=<?=_CW_OTHER?>"><?=$arrstrCW[_CW_OTHER]?></a></li>
     </ul>
     <p><a href="index.php?content=post&amp;cat=<?=_HOUSING?>"><?=$arrstrCW[_HOUSING]?></a></p>

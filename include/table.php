@@ -77,7 +77,7 @@ class TableResult {
       case _CW_BOOK:
         $this->table[desc][] = '<h3>'.$row[title].'</h3><p class="desc">'.$row[description].'</p><p class="details">ISBN: '.$row[isbn].'</p>';
         break;
-      case _CW_COURSE_NOTES: case _CW_HAND_NOTES: case _CW_EXAM:
+      case _CW_COURSE_NOTES: case _CW_HAND_NOTES:
         $this->table[desc][] = '<h3><span style="font-size:10px">from</span> '.$row[term].' '.$row[year].'</h3><p class="desc">'.$row[description].'</p>';
         break;
       case _CW_OTHER:

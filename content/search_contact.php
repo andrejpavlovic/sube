@@ -35,7 +35,7 @@ $html_title = $row['title'];
 $category = $arrstrCW[$row[category]];
 
 switch ($row[category]) {
-  case _CW_COURSE_NOTES: case _CW_HAND_NOTES: case _CW_EXAM:
+  case _CW_COURSE_NOTES: case _CW_HAND_NOTES:
     $title_label = 'Term';
     $title = "$row[term] $row[year]";
     $tmp = array();

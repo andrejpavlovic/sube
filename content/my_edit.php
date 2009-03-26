@@ -47,7 +47,7 @@ switch ($row['category']) {
     $title = $row['title'];
     $cw_isbn = $row['isbn'];
     break;
-  case _CW_COURSE_NOTES: case _CW_HAND_NOTES: case _CW_EXAM:
+  case _CW_COURSE_NOTES: case _CW_HAND_NOTES:
     $term = $row['term'];
     $year = $row['year'];
     break;

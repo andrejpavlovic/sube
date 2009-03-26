@@ -23,7 +23,7 @@ switch ($cat) {
     echo formEntry('<span class="red">*</span>ISBN:', '<input type="text" name="cw_isbn" maxlength="13" style="width:105px;" value="'.$cw_isbn.'" />');
     break;
 
-  case _CW_COURSE_NOTES: case _CW_HAND_NOTES: case _CW_EXAM:
+  case _CW_COURSE_NOTES: case _CW_HAND_NOTES:
     $sidebar = course_table(3);
     echo formEntry('<span class="red">*</span>Term:', formSelect($arrstrTERM, '<select name="term" style="width:110px;">', $term));
     echo formEntry('<span class="red">*</span>Year:', formSelect($arrstrYEAR, '<select name="year" style="width:110px;">', $year));

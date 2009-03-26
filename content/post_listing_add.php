@@ -36,7 +36,7 @@ function process_form() {
       array_push($columns, 'title', 'isbn');
       array_push($values, $title, $cw_isbn);
       break;
-    case _CW_COURSE_NOTES: case _CW_HAND_NOTES: case _CW_EXAM:
+    case _CW_COURSE_NOTES: case _CW_HAND_NOTES:
       $message_info .= 'Term: '.$term."\r\n"
                      . 'Year: '.$year."\r\n";
       array_push($columns, 'term', 'year');

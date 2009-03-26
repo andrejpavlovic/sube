@@ -39,7 +39,7 @@ function validate_form($val_pass = true) {
 
       break;
 
-    case _CW_COURSE_NOTES: case _CW_HAND_NOTES: case _CW_EXAM:
+    case _CW_COURSE_NOTES: case _CW_HAND_NOTES:
       // check if any entries are empty
       if (isEmptyTrim($term)) return "You must choose a term.";
       if (isEmptyTrim($year)) return "You must choose a year.";

@@ -55,7 +55,6 @@ INSERT INTO `cw_category` (`code`, `category_name`) VALUES (0,'Other');
 INSERT INTO `cw_category` (`code`, `category_name`) VALUES (1,'Books');
 INSERT INTO `cw_category` (`code`, `category_name`) VALUES (2,'Course Notes');
 INSERT INTO `cw_category` (`code`, `category_name`) VALUES (3,'Handwritten Notes');
-INSERT INTO `cw_category` (`code`, `category_name`) VALUES (4,'Test Papers');
 INSERT INTO `cw_category` (`code`, `category_name`) VALUES (5,'Housing');
 
 

@@ -45,7 +45,7 @@ require('top.php');
 	<span class="style2">$<?=number_format($books_sold[value], 2, '.', ',')?></span>!
 	This year we hope to double that amount while constantly increasing the usability of our site.
 	Founded and maintained by Univeristy of Waterloo students, UWSUBE allows you to buy/sell books,
-	course notes, handwritten notes, exam papers, and housing absolutely <span class="style1">FREE</span>!
+	course notes, handwritten notes, and housing absolutely <span class="style1">FREE</span>!
 </p> 
 <p>
 	There are currently <span class="style2"><?=number_format($books_posted[number], 0, '.', ',')?></span>

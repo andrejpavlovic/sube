@@ -62,7 +62,7 @@ if ($db->num_rows($rs_postings) > 0) {
         $table = &$table_book;
         array_push($table['desc'], '<h3>#'.$row['listid'].' '.$row['title'].'</h3><p class="desc">'.$row['description'].'</p><p class="details">ISBN: '.$row['isbn'].' &#8212; Courses: '.$courses.'</p>');
         break;
-      case _CW_COURSE_NOTES: case _CW_HAND_NOTES: case _CW_EXAM:
+      case _CW_COURSE_NOTES: case _CW_HAND_NOTES:
         $table = &$table_notes;
         array_push($table['desc'], '<h3>'.$row['term'].' '.$row['year'].' ('.$arrstrCW[$row['category']].')</h3><p class="desc">'.$row['description'].'</p><p class="details">Courses: '.$courses.'</p>');
         break;
@@ -92,7 +92,7 @@ if ($db->num_rows($rs_postings) > 0) {
   echo createTable(array_values($table_book));
   echo '<br /><br />';
 
-  echo '<h2 class="mycat">'.$arrstrCW[_CW_COURSE_NOTES].', '.$arrstrCW[_CW_HAND_NOTES].', '.$arrstrCW[_CW_EXAM].'</h2>';
+  echo '<h2 class="mycat">'.$arrstrCW[_CW_COURSE_NOTES].', '.$arrstrCW[_CW_HAND_NOTES].'</h2>';
   echo createTable(array_values($table_notes));
   echo '<br /><br />';
 
