@@ -1,3 +1,5 @@
+AddType x-mapp-php5 .php
+
 Options +FollowSymLinks
 RewriteEngine On
 # Redirect from uwsube.com to www.uwsube.com
