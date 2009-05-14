@@ -69,19 +69,21 @@ class TableResult {
     $this->table[price][] = '$' . number_format($row[price], 2);
     $this->table[contact][] = '<div class="mybutton"><a href="'.$_SERVER[PHP_SELF]
       .'?content=search&amp;id='.$row[listid].'">Contact Seller<br />#'.$row[listid].'</a></div>';
-    $this->table[cat][] = $arrstrCW[$row['category']];
   
     $row[description] = wordwrap($row[description], 28, ' ', 1);
   
     switch ($row['category']) {
       case _CW_BOOK:
         $this->table[desc][] = '<h3>'.$row[title].'</h3><p class="desc">'.$row[description].'</p><p class="details">ISBN: '.$row[isbn].'</p>';
+        $this->table[cat][] = sprintf('<img src="book_cover.php?isbn=%s" alt="Books" />', htmlspecialchars($row['isbn']));
         break;
       case _CW_COURSE_NOTES: case _CW_HAND_NOTES:
         $this->table[desc][] = '<h3><span style="font-size:10px">from</span> '.$row[term].' '.$row[year].'</h3><p class="desc">'.$row[description].'</p>';
+        $this->table[cat][] = $arrstrCW[$row['category']];
         break;
       case _CW_OTHER:
         $this->table[desc][] = '<h3>'.$row[title].'</h3><p class="desc">'.$row[description].'</p>';
+        $this->table[cat][] = $arrstrCW[$row['category']];
         break;
       default:
         break;
