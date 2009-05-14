@@ -1,8 +1,4 @@
 <?php
-
-// add our pear package location to the include path
-set_include_path(dirname(__FILE__).DIRECTORY_SEPARATOR.'pear'.PATH_SEPARATOR.get_include_path());
-
 // List of course ids
 $arrstrCOURSE_ID = array('', 'ACC', 'ACTSC', 'AFM', 'AMATH', 'ANTH', 'ARCH', 'ARCHL', 'ARTS', 'BET', 'BIOL', 'BUS', 'CDNST', 'CEDEV', 'CHE', 'CHEM', 'CHINA', 'CIVE', 'CLAS', 'CM', 'CO', 'COGSCI', 'COMST', 'COOP', 'CROAT', 'CS', 'DAC', 'DANCE', 'DM', 'DRAMA', 'DUTCH', 'EARTH', 'EASIA', 'ECE', 'ECON', 'ELPE', 'ENGL', 'ENVE', 'ENVS', 'ERS', 'ESL', 'FILM', 'FINE', 'FR', 'FRCS', 'GENE', 'GEOE', 'GEOG', 'GER', 'GERON', 'GRK', 'GS', 'HIST', 'HLTH', 'HRM', 'HSG', 'HUMSC', 'INTTS', 'IS', 'ISS', 'ITAL', 'ITALST', 'JAPAN', 'JS', 'KIN', 'KOREA', 'KPE', 'LAT', 'LED', 'LS', 'LSC', 'MATH', 'ME', 'MISC', 'MSCI', 'MTE', 'MTHEL', 'MUSIC', 'NATST', 'NE', 'NES', 'OPTOM', 'PACS', 'PDENG', 'PHIL', 'PHYS', 'PLAN', 'PMATH', 'POLSH', 'PORT', 'PSCI', 'PSYCH', 'REC', 'RELC', 'RS', 'RUSS', 'SCI', 'SE', 'SMF', 'SOC', 'SOCWK', 'SOCWL', 'SPAN', 'SPCOM', 'SPD', 'STAT', 'STV', 'SWREN', 'SYDE', 'TAX', 'TOUR', 'TPM', 'TPPE', 'UKRAN', 'UU', 'WHMIS', 'WKRPT', 'WS');
 
