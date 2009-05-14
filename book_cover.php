@@ -11,15 +11,21 @@ if (!file_exists($cached_file))
 	$wsdl_url = 'http://webservices.amazon.com/AWSECommerceService/AWSECommerceService.wsdl';
 	$client = new SoapClient($wsdl_url);
 	
+	$request = array(
+			'ItemId' => $isbn,
+			'ResponseGroup' => 'Images',
+	);
+	
+	if (strlen($isbn) == 13)
+	{
+		$request['SearchIndex'] = 'Books';
+		$request['IdType'] = 'EAN';
+	}
+	
 	$params = array(
 		'AWSAccessKeyId' => 'AKIAIM2T4FM6QWJDHDZQ',
 		'Operation' => 'ItemLookup',
-		'Request' => array(
-			'SearchIndex' => 'Books',
-			'ItemId' => $isbn,
-			'IdType' => 'EAN',
-			'ResponseGroup' => 'Images',
-		),
+		'Request' => $request,
 	);
 	
 	$books = $client->ItemLookup($params);
