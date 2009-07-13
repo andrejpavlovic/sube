@@ -1,6 +1,6 @@
 <?
 // ------ Get Posting Information ---------------
-$query = 'SELECT * FROM '._CW_TABLE.' WHERE listid = %i AND remove != 1 LIMIT 1';
+$query = 'SELECT * FROM '._CW_TABLE.' WHERE listid = %i AND remove = 0 LIMIT 1';
 $db->query( $db->safesql($query, array($_REQUEST[id]) ) );
 
 $row = $db->fetch_array();
