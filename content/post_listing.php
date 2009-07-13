@@ -88,7 +88,8 @@ function course_table($courses) {
 
 
 <div class="post_entry_desc">
-  <?=formEntry('Description:', '<textarea name="desc" cols="35" rows="8">'.$desc.'</textarea>'); ?>
+  <?php $notice = ($cat == _CW_BOOK) ? '<div class="fineprint">NOTE: Posting of photocopied books is prohibited.</div>' : '' ?>
+  <?=formEntry('Description:', '<textarea name="desc" cols="35" rows="8">'.$desc.'</textarea>'.$notice); ?>
 </div>
 
 <div class="post_entry">

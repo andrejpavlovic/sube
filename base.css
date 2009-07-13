@@ -360,3 +360,7 @@ display:block;
 padding:6px 3px 7px 3px;
 }
 
+div.fineprint {
+font-size:10px;
+font-weight:bold;
+}
