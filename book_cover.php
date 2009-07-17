@@ -1,6 +1,38 @@
 <?php
 
 require 'include/global_data.php';
+require dirname(__FILE__) . DIRECTORY_SEPARATOR . 'include' . DIRECTORY_SEPARATOR . 'libs' . DIRECTORY_SEPARATOR . 'soap-wsse.php';
+
+define('PRIVATE_KEY', dirname(__FILE__) . DIRECTORY_SEPARATOR . 'include' . DIRECTORY_SEPARATOR . 'pk-amazon-private-key.pem');
+define('CERT_FILE', dirname(__FILE__) . DIRECTORY_SEPARATOR . 'include' . DIRECTORY_SEPARATOR . 'cert-amazon-cert.pem');
+
+// Code from: http://www.cdatazone.org/index.php?/pages/source.html
+class mySoap extends SoapClient {
+
+   function __doRequest($request, $location, $saction, $version) {
+    $doc = new DOMDocument('1.0');
+    $doc->loadXML($request);
+
+    $objWSSE = new WSSESoap($doc);
+
+    /* add Timestamp with no expiration timestamp */
+     $objWSSE->addTimestamp();
+
+    /* create new XMLSec Key using RSA SHA-1 and type is private key */
+    $objKey = new XMLSecurityKey(XMLSecurityKey::RSA_SHA1, array('type'=>'private'));
+
+    /* load the private key from file - last arg is bool if key in file (TRUE) or is string (FALSE) */
+    $objKey->loadKey(PRIVATE_KEY, TRUE);
+
+    /* Sign the message - also signs appropraite WS-Security items */
+    $objWSSE->signSoapDoc($objKey);
+
+    /* Add certificate (BinarySecurityToken) to the message and attach pointer to Signature */
+    $token = $objWSSE->addBinaryToken(file_get_contents(CERT_FILE));
+    $objWSSE->attachTokentoSig($token);
+    return parent::__doRequest($objWSSE->saveXML(), $location, $saction, $version);
+   }
+}
 
 $isbn = preg_replace('/[^a-zA-Z0-9]/', '', $_GET['isbn']);
 $cached_file = 'cache' . DIRECTORY_SEPARATOR . 'book_covers' . DIRECTORY_SEPARATOR . $isbn . '.jpg';
@@ -9,7 +41,7 @@ $no_book_cover_file = 'images' . DIRECTORY_SEPARATOR . 'book_cover_not_found.jpg
 if (!file_exists($cached_file))
 {
 	$wsdl_url = 'http://webservices.amazon.com/AWSECommerceService/AWSECommerceService.wsdl';
-	$client = new SoapClient($wsdl_url);
+	$client = new mySoap($wsdl_url);
 	
 	$request = array(
 			'ItemId' => $isbn,
@@ -54,3 +86,5 @@ header('Content-Length: '.strlen($image));
 header('Content-Type: image/jpeg');
 
 echo $image;
+
+die();
