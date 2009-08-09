@@ -1,4 +1,6 @@
-<?
+<?php
+
+require_once dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . 'include' . DIRECTORY_SEPARATOR . 'swift' . DIRECTORY_SEPARATOR . 'swift_required.php';
 
 function get_random_id() {
   //set the random id length 
@@ -37,17 +39,30 @@ if (isset($_POST['email'])) {
       
   // compose email
   $subject = 'Password reset';
-  $message = "Your new password is displayed below. You can change this password at any time by loging into My UWSUBE.\r\n\r\nEmail: $email\r\nPassword: $new_pass\r\n\r\nYour feedback is important. Please do not hesitate to contact us should you have any questions or concerns.\r\n\r\nKind Regards,\r\nUWSUBE Team\r\nhelp@uwsube.com";
+  $body = "Your new password is displayed below. You can change this password at any time by logging into My UWSUBE.\r\n\r\nEmail: $email\r\nPassword: $new_pass\r\n\r\nYour feedback is important. Please do not hesitate to contact us should you have any questions or concerns.\r\n\r\nKind Regards,\r\nUWSUBE Team\r\n" . _EMAIL_SUPPORT_ADDRESS;
 
-  require_once 'include/mailer.php';
-  $mail = new mailer($email, $subject, $message);
-  $mail->setFrom('UWSUBE.com <help@uwsube.com>');
-  
-  // send email
-  if (!$mail->send()) {
-    $error = new mailer(_ERROR_EMAIL, 'Error with sending email', 'The following email to '.$email.' regarding password reset was not sent successfully.\r\n\r\n\r\n'.$message);
-    $error->send();
-  }
+	//Create the message
+	$message = Swift_Message::newInstance()
+		->setSubject($subject)
+		->setFrom(array(_EMAIL_FROM_ADDRESS => _EMAIL_FROM_NAME))
+		->setReturnPath(_EMAIL_ERROR_ADDRESS)
+		->setTo($email)
+		->setBody($body)
+	;
+	
+	$transport = Swift_SmtpTransport::newInstance(_SMTP_HOST);
+	$mailer = Swift_Mailer::newInstance($transport);
+	
+	// send email
+	if (!$mailer->send($message)) {
+		$message = Swift_Message::newInstance()
+			->setSubject('Error with sending email')
+			->setFrom(array(_EMAIL_FROM_ADDRESS => _EMAIL_FROM_NAME))
+			->setTo(_EMAIL_ERROR_ADDRESS)
+			->setBody(sprintf("The following email to %s regarding password reset was not sent successfully.\r\n\r\n\r\n%s", $email, $body))
+		;
+		$mailer->send($message);
+	}
 
   raise_error(_SUCCESS);
 }

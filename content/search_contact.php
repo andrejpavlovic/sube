@@ -1,4 +1,7 @@
-<?
+<?php
+
+require_once dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . 'include' . DIRECTORY_SEPARATOR . 'swift' . DIRECTORY_SEPARATOR . 'swift_required.php';
+
 // ------ Get Posting Information ---------------
 $query = 'SELECT * FROM '._CW_TABLE.' WHERE listid = %i AND remove = 0 LIMIT 1';
 $db->query( $db->safesql($query, array($_REQUEST[id]) ) );
@@ -52,7 +55,7 @@ switch ($row[category]) {
 }
 // ----------------------------------------------
 
-if (isset($_POST[submit])) {
+if (isset($_POST['submit'])) {
   $replyemail = htmlspecialchars(stripslashes($_POST['replyemail']));
   $number1 = intval($_POST['number1']);
   $number2 = intval($_POST['number2']);
@@ -81,7 +84,7 @@ if (isset($_POST[submit])) {
   if ($db->affected_rows() < 1)
     raise_error(_FAIL_INSERT);
 
-  $id = $db->insert_id();
+  $insert_id = $db->insert_id();
 
   $query = 'SELECT email FROM '._CW_TABLE.', '._CW_TABLE_USERS
     .' WHERE '._CW_TABLE.'.uid = '._CW_TABLE_USERS.'.uid AND listid = %i LIMIT 1';
@@ -96,21 +99,35 @@ if (isset($_POST[submit])) {
   $subject = "UWSUBE Listing #$_REQUEST[id] - $title";
 
   // compose email
-  $message = "Category: $category\r\n$title_label: $title\r\n$price_label: $$price\r\n\r\n"."The following is a message sent to you via http://www.uwsube.com/ regarding your posting:\r\n\r\n".$message;
+  $body = "Category: $category\r\n$title_label: $title\r\n$price_label: $$price\r\n\r\n"."The following is a message sent to you via UWSUBE regarding your posting:\r\n\r\n".$message;
 
-  require_once 'include/mailer.php';
-  $mail = new mailer($email, $subject, $message);
-  $mail->setFrom("<$replyemail>");
+	//Create the message
+	$message = Swift_Message::newInstance()
+		->setSubject($subject)
+		->setFrom($replyemail)
+		->setSender(array(_EMAIL_FROM_ADDRESS => _EMAIL_FROM_NAME))
+		->setReturnPath(_EMAIL_ERROR_ADDRESS)
+		->setTo($email)
+		->setBody($body)
+	;
+	
+	$transport = Swift_SmtpTransport::newInstance(_SMTP_HOST);
+	$mailer = Swift_Mailer::newInstance($transport);
+	
+	// send email
+	if (!$mailer->send($message)) {
+		$message = Swift_Message::newInstance()
+			->setSubject('Error with sending email')
+			->setFrom(array(_EMAIL_FROM_ADDRESS => _EMAIL_FROM_NAME))
+			->setTo(_EMAIL_ERROR_ADDRESS)
+			->setBody(sprintf("The following email to %s regarding contact seller was not sent successfully.\r\n\r\n\r\n%s", $email, $body))
+		;
+		$mailer->send($message);
+		
+		raise_error(_ERR_EMAIL_NOT_SENT);
+	}
 
-  // send email
-  if (!$mail->send()) {
-    $error = new mailer(_ERROR_EMAIL, 'Error with sending email', 'The following email to '.$email.' regarding contact seller was not sent successfully.\r\n\r\n\r\n'.$message);
-    $error->send();
-
-    raise_error(_ERR_EMAIL_NOT_SENT);
-  }
-
-  $db->query('UPDATE '._CW_TABLE_CONTACT_SELLER." SET sent = 1 WHERE id = $id");
+  $db->query('UPDATE '._CW_TABLE_CONTACT_SELLER." SET sent = 1 WHERE id = $insert_id");
 
   setcookie('seller_message', '', time()-86400);
   setcookie('number1', '', time()-86400);
@@ -155,7 +172,7 @@ else
 <?=formEntry("$price_label:", "$$price" ); ?>
 <?=formEntry("Time Posted:", $time ); ?>
 <?=formEntry('Message:', '<textarea name="message" cols="30" rows="8">'.$_COOKIE[seller_message].'</textarea>'); ?>
-<?=formEntry('Reply-Email:', '<input type="text" name="replyemail" style="width:160px;" value="'.$_COOKIE[user_email].'" />'); ?>
+<?=formEntry('Your Email:', '<input type="text" name="replyemail" style="width:160px;" value="'.$_COOKIE[user_email].'" />'); ?>
 <?=formEntry("$number1 + $number2 =", '<input type="text" name="sum" size="4" value="'.$sum.'" />'); ?>
 <br />
 <input type="hidden" name="number1" value="<?php echo $number1 ?>"/>

@@ -1,4 +1,7 @@
 <?php
+
+require dirname(__FILE__) . DIRECTORY_SEPARATOR . 'settings.php';
+
 // List of course ids
 $arrstrCOURSE_ID = array('', 'ACC', 'ACTSC', 'AFM', 'AMATH', 'ANTH', 'ARCH', 'ARCHL', 'ARTS', 'BET', 'BIOL', 'BUS', 'CDNST', 'CEDEV', 'CHE', 'CHEM', 'CHINA', 'CIVE', 'CLAS', 'CM', 'CO', 'COGSCI', 'COMST', 'COOP', 'CROAT', 'CS', 'DAC', 'DANCE', 'DM', 'DRAMA', 'DUTCH', 'EARTH', 'EASIA', 'ECE', 'ECON', 'ELPE', 'ENGL', 'ENVE', 'ENVS', 'ERS', 'ESL', 'FILM', 'FINE', 'FR', 'FRCS', 'GENE', 'GEOE', 'GEOG', 'GER', 'GERON', 'GRK', 'GS', 'HIST', 'HLTH', 'HRM', 'HSG', 'HUMSC', 'INTTS', 'IS', 'ISS', 'ITAL', 'ITALST', 'JAPAN', 'JS', 'KIN', 'KOREA', 'KPE', 'LAT', 'LED', 'LS', 'LSC', 'MATH', 'ME', 'MISC', 'MSCI', 'MTE', 'MTHEL', 'MUSIC', 'NATST', 'NE', 'NES', 'OPTOM', 'PACS', 'PDENG', 'PHIL', 'PHYS', 'PLAN', 'PMATH', 'POLSH', 'PORT', 'PSCI', 'PSYCH', 'REC', 'RELC', 'RS', 'RUSS', 'SCI', 'SE', 'SMF', 'SOC', 'SOCWK', 'SOCWL', 'SPAN', 'SPCOM', 'SPD', 'STAT', 'STV', 'SWREN', 'SYDE', 'TAX', 'TOUR', 'TPM', 'TPPE', 'UKRAN', 'UU', 'WHMIS', 'WKRPT', 'WS');
 
@@ -27,12 +30,9 @@ $arrstrCW = array(
 	_HOUSING => 'Housing'
 );
 
-// Define an email to which all error messages are sent to
-define('_ERROR_EMAIL', 'andrej.pavlovic@gmail.com');
-
 // Define database connection object
 require_once('include/db.php');
-$db = new SQLLayer('localhost', 'root', '', 'uwsube');
+$db = new SQLLayer(_DB_HOST, _DB_USER, _DB_PASS, _DB_NAME);
 
 // Define courseware tables
 define('_CW_TABLE', 'courseware'); // also storing housing listings here
@@ -111,4 +111,3 @@ function formSelect($array, $select_open, $selected = '')  {
 
   return $return;
 }
-?>

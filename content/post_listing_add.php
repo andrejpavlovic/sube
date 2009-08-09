@@ -1,4 +1,6 @@
-<?
+<?php
+
+require_once dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . 'include' . DIRECTORY_SEPARATOR . 'swift' . DIRECTORY_SEPARATOR . 'swift_required.php';
 
 function process_form() {
   global $db, $cid, $cnum;
@@ -83,21 +85,31 @@ function process_form() {
 
   // compose email
   $subject = 'Listing posted';
-  $message = 'Your listing has been added to UWSUBE. The posting will remain on our site for a period of '._POSTING_PERIOD.' months. After this period, you will be contacted again to confirm if you want your posting to remain for another '._POSTING_PERIOD." months. Below is some of the information regarding your posting.\r\n\r\n$message_info\r\nYour feedback is important. Please do not hesitate to contact us should you have any questions or concerns.\r\n\r\nKind Regards,\r\nUWSUBE Team\r\ninfo at uwsube dot com";
+  $body = 'Your listing has been added to UWSUBE. The posting will remain on our site for a period of '._POSTING_PERIOD.' months. After this period, you will be contacted again to confirm if you want your posting to remain for another '._POSTING_PERIOD." months. Below is some of the information regarding your posting.\r\n\r\n$message_info\r\nYour feedback is important. Please do not hesitate to contact us should you have any questions or concerns.\r\n\r\nKind Regards,\r\nUWSUBE Team\r\n"._EMAIL_SUPPORT_ADDRESS;
 
-  require_once('include/mailer.php');
-  $mail = new mailer($email, $subject, $message);
-  $mail->setFrom('UWSUBE.com <help@uwsube.com>');
-  
-  // send email
-  if (!$mail->send()) {
-    $error = new mailer(_ERROR_EMAIL, 'Error with sending email', 'The following email to '.$email.' was not sent successfully.\r\n\r\n\r\n'.$message);
-    $error->send();
-  }
+	//Create the message
+	$message = Swift_Message::newInstance()
+		->setSubject($subject)
+		->setFrom(array(_EMAIL_FROM_ADDRESS => _EMAIL_FROM_NAME))
+		->setReturnPath(_EMAIL_ERROR_ADDRESS)
+		->setTo($email)
+		->setBody($body)
+	;
+	
+	$transport = Swift_SmtpTransport::newInstance(_SMTP_HOST);
+	$mailer = Swift_Mailer::newInstance($transport);
+	
+	// send email
+	if ($mailer->send($message)) {
+		$message = Swift_Message::newInstance()
+			->setSubject('Error with sending email')
+			->setFrom(array(_EMAIL_FROM_ADDRESS => _EMAIL_FROM_NAME))
+			->setTo(_EMAIL_ERROR_ADDRESS)
+			->setBody(sprintf("The following email to %s was not sent successfully.\r\n\r\n\r\n%s", $email, $body))
+		;
+		$mailer->send($message);
+	}
 
   header('location:http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'].'?content=post&type=done');
   exit();
 }
-
-
-?>
