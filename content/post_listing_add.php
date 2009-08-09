@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . 'include' . DIRECTORY_SEPARATOR . 'swift' . DIRECTORY_SEPARATOR . 'swift_required.php';
+require_once dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . 'include' . DIRECTORY_SEPARATOR . 'mailer.php';
 
 function process_form() {
   global $db, $cid, $cnum;
@@ -96,11 +96,10 @@ function process_form() {
 		->setBody($body)
 	;
 	
-	$transport = Swift_SmtpTransport::newInstance(_SMTP_HOST);
-	$mailer = Swift_Mailer::newInstance($transport);
+	$mailer = MyMailer::getMailer();
 	
 	// send email
-	if ($mailer->send($message)) {
+	if (!$mailer->send($message)) {
 		$message = Swift_Message::newInstance()
 			->setSubject('Error with sending email')
 			->setFrom(array(_EMAIL_FROM_ADDRESS => _EMAIL_FROM_NAME))

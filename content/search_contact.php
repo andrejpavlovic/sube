@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . 'include' . DIRECTORY_SEPARATOR . 'swift' . DIRECTORY_SEPARATOR . 'swift_required.php';
+require_once dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . 'include' . DIRECTORY_SEPARATOR . 'mailer.php';
 
 // ------ Get Posting Information ---------------
 $query = 'SELECT * FROM '._CW_TABLE.' WHERE listid = %i AND remove = 0 LIMIT 1';
@@ -111,8 +111,7 @@ if (isset($_POST['submit'])) {
 		->setBody($body)
 	;
 	
-	$transport = Swift_SmtpTransport::newInstance(_SMTP_HOST);
-	$mailer = Swift_Mailer::newInstance($transport);
+	$mailer = MyMailer::getMailer();
 	
 	// send email
 	if (!$mailer->send($message)) {

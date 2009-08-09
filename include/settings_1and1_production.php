@@ -12,5 +12,6 @@ define('_EMAIL_FROM_ADDRESS', 'info@uwsube.com');
 define('_EMAIL_ERROR_ADDRESS', 'andrej.pavlovic@gmail.com');
 define('_EMAIL_SUPPORT_ADDRESS', 'info@uwsube.com');
 
-// Define SMTP settings
-define('_SMTP_HOST', 'localhost');
+// Define mailer settings
+define('_MAILER_TYPE', 'sendmail');
+define('_MAILER_SENDMAIL_CMD', '/usr/sbin/sendmail -t');

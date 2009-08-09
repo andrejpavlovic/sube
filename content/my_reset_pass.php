@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . 'include' . DIRECTORY_SEPARATOR . 'swift' . DIRECTORY_SEPARATOR . 'swift_required.php';
+require_once dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . 'include' . DIRECTORY_SEPARATOR . 'mailer.php';
 
 function get_random_id() {
   //set the random id length 
@@ -50,8 +50,7 @@ if (isset($_POST['email'])) {
 		->setBody($body)
 	;
 	
-	$transport = Swift_SmtpTransport::newInstance(_SMTP_HOST);
-	$mailer = Swift_Mailer::newInstance($transport);
+	$mailer = MyMailer::getMailer();
 	
 	// send email
 	if (!$mailer->send($message)) {

@@ -12,5 +12,6 @@ define('_EMAIL_FROM_ADDRESS', 'info@localhost');
 define('_EMAIL_ERROR_ADDRESS', 'error@localhost');
 define('_EMAIL_SUPPORT_ADDRESS', 'info@localhost');
 
-// Define SMTP settings
-define('_SMTP_HOST', '127.0.0.1');
+// Define mailer settings
+define('_MAILER_TYPE', 'smtp');
+define('_MAILER_SMTP_HOST', '127.0.0.1');
