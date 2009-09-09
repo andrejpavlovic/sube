@@ -364,3 +364,13 @@ div.fineprint {
 font-size:10px;
 font-weight:bold;
 }
+
+dl.faq dt {
+font-weight:bold;
+margin:15px 0 0 0;
+}
+
+dl.faq dd {
+margin:0;
+padding:3px 0 0 0;
+}

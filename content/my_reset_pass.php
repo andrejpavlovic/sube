@@ -67,7 +67,7 @@ if (isset($_POST['email'])) {
 }
 ?>
 
-<p>Please enter your email address below. A new password will be sent to this email account. You can change your new password after loging into My UWSUBE.</p>
+<p>Please enter your email address below. A new password will be sent to this email account. You can change your new password after logging into My UWSUBE.</p>
 
 <form action="<?=$_SERVER['PHP_SELF']?>" method="post">
 <div class="formcenter">
