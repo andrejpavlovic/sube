@@ -1,4 +1,4 @@
-<?
+<?php
 require('include/global_data.php');
 $html_title = 'Submit a Posting';
 if (isset($cat)) $html_title .= " - $arrstrCW[$cat]";
@@ -8,11 +8,11 @@ require('top.php');
 <div id="content" style="background-image:url(images/bg_post.jpg);">
 <h1>Submit a Posting</h1>
 
-<?if (isset($cat)) { ?>
-  <h2 class="sub"><?=$arrstrCW[$cat]?></h2><?
+<?php if (isset($cat)) { ?>
+  <h2 class="sub"><?php echo $arrstrCW[$cat]?></h2><?php
 } ?>
 
-<? switch ($_REQUEST['type']) {
+<?php switch ($_REQUEST['type']) {
   case 'add':
     require('content/post_validate.php');
     if ($form_error = validate_form()) {
@@ -41,15 +41,15 @@ require('top.php');
     <p>Choose which one of the following items you would like to advertise on the website:</p>
     Course Related
     <ul>
-      <li><a href="index.php?content=post&amp;cat=<?=_CW_BOOK?>"><?=$arrstrCW[_CW_BOOK]?></a></li>
-      <li><a href="index.php?content=post&amp;cat=<?=_CW_COURSE_NOTES?>"><?=$arrstrCW[_CW_COURSE_NOTES]?></a></li>
-      <li><a href="index.php?content=post&amp;cat=<?=_CW_HAND_NOTES?>"><?=$arrstrCW[_CW_HAND_NOTES]?></a></li>
-      <li><a href="index.php?content=post&amp;cat=<?=_CW_OTHER?>"><?=$arrstrCW[_CW_OTHER]?></a></li>
+      <li><a href="index.php?content=post&amp;cat=<?php echo _CW_BOOK?>"><?php echo $arrstrCW[_CW_BOOK]?></a></li>
+      <li><a href="index.php?content=post&amp;cat=<?php echo _CW_COURSE_NOTES?>"><?php echo $arrstrCW[_CW_COURSE_NOTES]?></a></li>
+      <li><a href="index.php?content=post&amp;cat=<?php echo _CW_HAND_NOTES?>"><?php echo $arrstrCW[_CW_HAND_NOTES]?></a></li>
+      <li><a href="index.php?content=post&amp;cat=<?php echo _CW_OTHER?>"><?php echo $arrstrCW[_CW_OTHER]?></a></li>
     </ul>
-    <p><a href="index.php?content=post&amp;cat=<?=_HOUSING?>"><?=$arrstrCW[_HOUSING]?></a></p>
-  <? } break;
+    <p><a href="index.php?content=post&amp;cat=<?php echo _HOUSING?>"><?php echo $arrstrCW[_HOUSING]?></a></p>
+  <?php } break;
 } ?>
 
 </div>
 
-<? require('bottom.php'); ?>
+<?php require('bottom.php'); ?>

@@ -1,4 +1,4 @@
-<?
+<?php
 
 function validate_form($val_pass = true) {
   global $cid, $cnum;

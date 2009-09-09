@@ -1,4 +1,4 @@
-<?
+<?php
 if ($_POST['content'] === 'search') {
   $courseid = htmlspecialchars(stripslashes(trim($_POST['courseid'])));
   $number = htmlspecialchars(stripslashes(trim($_POST['number'])));
@@ -6,20 +6,20 @@ if ($_POST['content'] === 'search') {
   $keywords = htmlspecialchars(stripslashes(trim($_POST['keywords'])));
 }
 ?>
-<form id="search_form" action="<?=$_SERVER['PHP_SELF']?>" method="post">
+<form id="search_form" action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
 
 <h1 class="menu_title">Quick Search</h1>
 
 <div class="menu_sub">Courseware</div>
 <div style="text-align:center;padding-bottom:10px">
-(<a href="<?=$_SERVER['PHP_SELF']?>?content=search&amp;type=browse">Browse All Postings</a>)
+(<a href="<?php echo $_SERVER['PHP_SELF']?>?content=search&amp;type=browse">Browse All Postings</a>)
 </div>
 <div style="padding-bottom:10px;text-align:center;">Search by any field(s):</div>
 
 <div id="left_courseware">
 
-  <?=formEntry('Keywords:', '<input id="'.uniqid(_UNIQUE_ID_PREFIX).'" type="text" name="keywords" style="width:105px;" value="'.$keywords.'" />') ?>
-  <?=formEntry('ISBN:', '<input id="'.uniqid(_UNIQUE_ID_PREFIX).'" type="text" name="isbn" maxlength="13" style="width:105px;" value="'.$isbn.'" />') ?>
+  <?php echo formEntry('Keywords:', '<input id="'.uniqid(_UNIQUE_ID_PREFIX).'" type="text" name="keywords" style="width:105px;" value="'.$keywords.'" />') ?>
+  <?php echo formEntry('ISBN:', '<input id="'.uniqid(_UNIQUE_ID_PREFIX).'" type="text" name="isbn" maxlength="13" style="width:105px;" value="'.$isbn.'" />') ?>
 
 </div>
 
@@ -32,7 +32,7 @@ if ($_POST['content'] === 'search') {
 <div class="menu_sub">Off Campus Housing</div>
 
 <div style="text-align:center">
-(<a href="<?=$_SERVER['PHP_SELF']?>?content=search&amp;type=browse&amp;cat=<?=_HOUSING ?>">Browse All Postings</a>)
+(<a href="<?php echo $_SERVER['PHP_SELF']?>?content=search&amp;type=browse&amp;cat=<?php echo _HOUSING ?>">Browse All Postings</a>)
 </div>
 
 <br />

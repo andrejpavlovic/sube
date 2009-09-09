@@ -1,8 +1,8 @@
-<?
+<?php
 require('include/global_data.php');
 ?>
 
-<?
+<?php
 function raise_error($err = '') {
   global $id;
   

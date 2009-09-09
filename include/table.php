@@ -1,4 +1,4 @@
-<?
+<?php
 
 function createTable($array, $css_class = 'mypost') {
 

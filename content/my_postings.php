@@ -1,4 +1,4 @@
-<?
+<?php
 if (!$_COOKIE['login']) {
   raise_error();
 }
@@ -38,7 +38,7 @@ $rs_postings = $db->query('SELECT listid, title, category, description, isbn, pr
 if ($db->num_rows($rs_postings) > 0) {
 
   ?>Your current postings are displayed below. You may edit or remove them at your discretion.
-  <br /><br /><?
+  <br /><br /><?php
 
   $table_other = $table_notes = $table_book = array('desc' => array('Description'), 'price' => array('Price'), 'actions' => array('Actions'));
   $table_housing = array('desc' => array('Description'), 'price' => array('Rent'), 'actions' => array('Actions'));
@@ -106,7 +106,7 @@ if ($db->num_rows($rs_postings) > 0) {
   
 
 } else {
-  ?>You have no postings currently.<?
+  ?>You have no postings currently.<?php
 }
 
 }

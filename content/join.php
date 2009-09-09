@@ -1,4 +1,4 @@
-<?
+<?php
 require('include/global_data.php');
 
 $html_title = 'Join Us';
@@ -20,6 +20,6 @@ The roles and responsibilities of a Graphic Artist can include logo design, bann
 
 </div>
 
-<?
+<?php
 require('bottom.php');
 ?>

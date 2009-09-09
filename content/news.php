@@ -1,4 +1,4 @@
-<?
+<?php
 
 require 'include/global_data.php';
 
@@ -40,16 +40,16 @@ require('top.php');
 <h1>Latest News</h1>
 
 <p>
-	Students bought over <span class="style2"><?=number_format($books_sold[number], 0, '.', ',')?></span>
+	Students bought over <span class="style2"><?php echo number_format($books_sold[number], 0, '.', ',')?></span>
 	courseware items (books, course notes, etc.) last year worth almost
-	<span class="style2">$<?=number_format($books_sold[value], 2, '.', ',')?></span>!
+	<span class="style2">$<?php echo number_format($books_sold[value], 2, '.', ',')?></span>!
 	This year we hope to double that amount while constantly increasing the usability of our site.
 	Founded and maintained by University of Waterloo students, UWSUBE allows you to buy/sell books,
 	course notes, handwritten notes, and housing absolutely <span class="style1">FREE</span>!
 </p> 
 <p>
-	There are currently <span class="style2"><?=number_format($books_posted[number], 0, '.', ',')?></span>
-	courseware items listed worth over <span class="style2">$<?=number_format($books_posted[value], 2, '.', ',')?></span>.
+	There are currently <span class="style2"><?php echo number_format($books_posted[number], 0, '.', ',')?></span>
+	courseware items listed worth over <span class="style2">$<?php echo number_format($books_posted[value], 2, '.', ',')?></span>.
 </p>
 
 <p>
@@ -58,9 +58,9 @@ require('top.php');
 </p>
 
 <p>
-	There are also over <span class="style2"><?=number_format($housing_posted[number], 0, '.', ',')?></span>
+	There are also over <span class="style2"><?php echo number_format($housing_posted[number], 0, '.', ',')?></span>
 	off campus housing postings available for you to choose from.
-	<span class="style2"><?=number_format($housing_sold[number], 0, '.', ',')?></span> have already been rented out in the last year!
+	<span class="style2"><?php echo number_format($housing_sold[number], 0, '.', ',')?></span> have already been rented out in the last year!
 </p>
 
 <br />
@@ -69,10 +69,10 @@ require('top.php');
 
 <br />
 
-<?=$five_postings_table->printTable();?>
+<?php echo $five_postings_table->printTable();?>
 
 </div>
 
-<?
+<?php
 require('bottom.php');
 ?>

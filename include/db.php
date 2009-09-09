@@ -1,4 +1,4 @@
-<?
+<?php
 // Some crappy mySQL wrapper class from Cosmin Cristea <kokosanu at yahoo dot com>
 
 require 'include/SafeSQL.class.php';

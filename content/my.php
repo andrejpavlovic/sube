@@ -1,4 +1,4 @@
-<?
+<?php
 function raise_error($err = '', $type = '') {
   if (!empty($type))
     $type = "&type=$type";
@@ -18,7 +18,7 @@ require('top.php');
 <div id="content" style="background-image:url(images/bg_my.jpg);">
 <h1>My UWSUBE</h1>
 
-<?
+<?php
 switch ($_REQUEST['type']) {
   case 'login':
     $email = htmlspecialchars(stripslashes($_POST[email]));
@@ -72,12 +72,12 @@ switch ($_REQUEST['type']) {
       require('content/my_postings.php');
     } else {
       ?>
-      <form action="<?=$_SERVER['PHP_SELF']?>" method="post">
+      <form action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
       <div class="formcenter" style="width:100%">
       <p>By logging in you can change your password, modify your existing postings, or remove your existing postings.</p>
       <br />
-        <?=formEntry('Email:', '<input id="'.uniqid(_UNIQUE_ID_PREFIX).'" type="text" name="email" style="width:140px;" value="'.$user_email.'" />'); ?>
-        <?=formEntry('Password:', '<input id="'.uniqid(_UNIQUE_ID_PREFIX).'" type="password" name="pass" style="width:140px;" /><br /><a href="'.$_SERVER['PHP_SELF'].'?content=my&amp;type=pass">Forgot your password</a>'); ?>
+        <?php echo formEntry('Email:', '<input id="'.uniqid(_UNIQUE_ID_PREFIX).'" type="text" name="email" style="width:140px;" value="'.$user_email.'" />'); ?>
+        <?php echo formEntry('Password:', '<input id="'.uniqid(_UNIQUE_ID_PREFIX).'" type="password" name="pass" style="width:140px;" /><br /><a href="'.$_SERVER['PHP_SELF'].'?content=my&amp;type=pass">Forgot your password</a>'); ?>
         <br />
         <div style="text-align:center"><input type="submit" value="Login" /></div>
       <input type="hidden" name="content" value="my"/>
@@ -85,7 +85,7 @@ switch ($_REQUEST['type']) {
 
       <br />
        
-      <? switch ($_GET['error']) {
+      <?php switch ($_GET['error']) {
         case _ERR_EMAIL:
           $msg = '<p class="msg"><span class="red">Invalid email.</span></p>';
           break;
@@ -107,10 +107,10 @@ switch ($_REQUEST['type']) {
       
       </div>
       </form>
-    <? }
+    <?php }
     break;
 } ?>
 
 </div>
 
-<? require('bottom.php'); ?>
+<?php require('bottom.php'); ?>

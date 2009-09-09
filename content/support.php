@@ -1,4 +1,4 @@
-<?
+<?php
 require('include/global_data.php');
 $html_title = 'Our Supporters';
 require('top.php');
@@ -24,4 +24,4 @@ require('top.php');
 
 </div>
 
-<? require('bottom.php'); ?>
+<?php require('bottom.php'); ?>

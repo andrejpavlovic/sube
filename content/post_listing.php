@@ -1,7 +1,7 @@
-<form action="<?=$_SERVER['PHP_SELF']?>" method="post">
+<form action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
 
 <div class="post_entry" style="padding-top:7px">&nbsp;
-<?
+<?php
 
 if (!isset($content_form)) $content_form = 'post';
 if (!isset($type_form)) $type_form = 'add';
@@ -51,7 +51,7 @@ switch ($cat) {
 if (is_numeric($price)) $price = number_format($price, 2);
 
 ?>
-  <?=formEntry('<span class="red">*</span>'.$pricelabel, '<input type="text" name="price" maxlength="15" style="width:105px;" value="'.$price.'" />'); ?>
+  <?php echo formEntry('<span class="red">*</span>'.$pricelabel, '<input type="text" name="price" maxlength="15" style="width:105px;" value="'.$price.'" />'); ?>
 
 </div>
 
@@ -63,16 +63,16 @@ function course_table($courses) {
   <table summary="Specify the courses and course numbers to which this posting applies" style="text-align:center;margin: 0 auto">
   <thead><tr><td></td><td>Course</td><td>Number</td></tr></thead>
   <tbody>
-  <? for ($i = 1; $i<=$courses; $i++) {
+  <?php for ($i = 1; $i<=$courses; $i++) {
     $for_id1 = uniqid(_UNIQUE_ID_PREFIX); $for_id2 = uniqid(_UNIQUE_ID_PREFIX);
     ?>
     <tr>
-    <td><? if($i==1){ ?><span class="red">*</span><?}?></td>
-    <td><?=formSelect($arrstrCOURSE_ID, '<div class="hidden"><label for="'.$for_id1.'">Select a course id</label></div><select id="'.$for_id1.'" name="cid[]" style="width:80px;">', $cid[$i-1]); ?></td>
-    <td><div class="hidden"><label for="<?=$for_id2?>">Input the course number</label></div>
-    <input id="<?=$for_id2?>" type="text" name="cnum[]" maxlength="3" style="width:30px;" value="<?=$cnum[$i-1]?>" /></td>
+    <td><?php if($i==1){ ?><span class="red">*</span><?php } ?></td>
+    <td><?php echo formSelect($arrstrCOURSE_ID, '<div class="hidden"><label for="'.$for_id1.'">Select a course id</label></div><select id="'.$for_id1.'" name="cid[]" style="width:80px;">', $cid[$i-1]); ?></td>
+    <td><div class="hidden"><label for="<?php echo $for_id2?>">Input the course number</label></div>
+    <input id="<?php echo $for_id2?>" type="text" name="cnum[]" maxlength="3" style="width:30px;" value="<?php echo $cnum[$i-1]?>" /></td>
     </tr>
-  <? } ?>
+  <?php } ?>
   </tbody></table>
   
   <?php
@@ -83,34 +83,34 @@ function course_table($courses) {
 <div class="post_entry" style="text-align:center;">
 	<?php echo $sidebar; ?>
 </div>
-<? } ?>
+<?php } ?>
 
 
 
 <div class="post_entry_desc">
   <?php $notice = ($cat == _CW_BOOK) ? '<div class="fineprint">NOTE: Posting of photocopied books is prohibited.</div>' : '' ?>
-  <?=formEntry('Description:', '<textarea name="desc" cols="35" rows="8">'.$desc.'</textarea>'.$notice); ?>
+  <?php echo formEntry('Description:', '<textarea name="desc" cols="35" rows="8">'.$desc.'</textarea>'.$notice); ?>
 </div>
 
 <div class="post_entry">
 
-  <? if ($val_pass) {
+  <?php if ($val_pass) {
    echo formEntry('<span class="red">*</span>Email:', '<input type="text" name="email" style="width:140px;" value="'.$email.'" />');
    echo formEntry('<span class="red">*</span>Password:', '<input type="password" name="pass" style="width:140px;" />');
   } ?>
 
   <br />
-  <div class="center"><input type="submit" value="<?=$submit_form?>" style="margin:0 auto;" /></div>
-  <input type="hidden" name="cat" value="<?=$cat?>" />
-  <input type="hidden" name="content" value="<?=$content_form?>" />
-  <input type="hidden" name="type" value="<?=$type_form?>" />
-  <?=$action_form?>
+  <div class="center"><input type="submit" value="<?php echo $submit_form?>" style="margin:0 auto;" /></div>
+  <input type="hidden" name="cat" value="<?php echo $cat?>" />
+  <input type="hidden" name="content" value="<?php echo $content_form?>" />
+  <input type="hidden" name="type" value="<?php echo $type_form?>" />
+  <?php echo $action_form?>
 </div>
 
 <div class="post_entry" style="padding:0px 10px 0px 10px;text-align:center;width:45%">
-<? if (isset($form_error)) { // print error from form validation ?>
-<span class="red"><?=$form_error?></span>
-<? } ?>
+<?php if (isset($form_error)) { // print error from form validation ?>
+<span class="red"><?php echo $form_error?></span>
+<?php } ?>
 </div>
 
 </form>

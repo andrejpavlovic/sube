@@ -1,4 +1,4 @@
-<?
+<?php
 if (!$_COOKIE['login']) {
   raise_error();
 }
@@ -67,15 +67,15 @@ foreach ($posting as $type=>$val)
 ?>
 
 <p>Are you sure you want to remove the following posting?</p>
-<?=$details?>
+<?php echo $details?>
 <br />
-<form action="<?=$_SERVER['PHP_SELF']?>" method="post">
+<form action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
 <input type="hidden" name="content" value="my"/>
 <input type="hidden" name="type" value="home"/>
 <input type="hidden" name="action" value="rem"/>
-<input type="hidden" name="id" value="<?=$_GET['id']?>"/>
-<input type="submit" name="submit" value="<?=_YES?>" style="width:60px" />
-&nbsp;&nbsp;&nbsp;<input type="submit" name="submit" value="<?=_NO?>" style="width:60px" />
+<input type="hidden" name="id" value="<?php echo $_GET['id']?>"/>
+<input type="submit" name="submit" value="<?php echo _YES?>" style="width:60px" />
+&nbsp;&nbsp;&nbsp;<input type="submit" name="submit" value="<?php echo _NO?>" style="width:60px" />
 
 
 </form>

@@ -1,4 +1,4 @@
-<?
+<?php
 // If the web browser supports xhtml, then update the header
 /*
 if ( stristr($_SERVER[HTTP_ACCEPT],"application/xhtml+xml") )

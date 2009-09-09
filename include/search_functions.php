@@ -1,4 +1,4 @@
-<?
+<?php
 require_once 'include/global_data.php';
 
 function format_results ($query_results) {

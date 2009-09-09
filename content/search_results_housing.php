@@ -1,4 +1,4 @@
-<?
+<?php
 $html_title = 'Browse All Housing Postings';
 require('top.php');
 ?>
@@ -6,7 +6,7 @@ require('top.php');
 <div id="content" style="background-image:url(images/bg_search.jpg);">
 <h1>Browse All Postings</h1>
 
-<?
+<?php
 echo $error;
 
 $query = 'SELECT count('._CW_TABLE.'.listid) FROM '._CW_TABLE_CATEGORY.','._CW_TABLE

@@ -1,4 +1,4 @@
-<?
+<?php
 require('include/global_data.php');
 $html_title = 'Contact Information';
 require('top.php');
@@ -33,13 +33,13 @@ The email is:
 	
 	<dt>My email/password does not work. What should I do?</dt>
 	<dd>
-		Try to <a href="<?=$_SERVER['PHP_SELF']?>?content=my&type=pass">reset your password</a>.
+		Try to <a href="<?php echo $_SERVER['PHP_SELF']?>?content=my&type=pass">reset your password</a>.
 	</dd>
 </dl>
 
 
 </div>
 
-<?
+<?php
 require('bottom.php');
 ?>

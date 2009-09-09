@@ -5,7 +5,7 @@
 <div id="bottom">
 
 <div style="float:left;">
-&copy; <?=date('Y')?> UWSUBE All rights reserved<br />
+&copy; <?php echo date('Y')?> UWSUBE All rights reserved<br />
 Version 2.0
 </div>
 

@@ -1,4 +1,4 @@
-<?
+<?php
 
 if ($_REQUEST[type] === 'browse') {
   $title = 'Browse All Postings';
@@ -14,9 +14,9 @@ require('top.php');
 ?>
 
 <div id="content" style="background-image:url(images/bg_search.jpg);">
-<h1><?=$title?></h1>
+<h1><?php echo $title?></h1>
 
-<?
+<?php
 echo $error;
 
 if ($_REQUEST[type] === 'browse') {

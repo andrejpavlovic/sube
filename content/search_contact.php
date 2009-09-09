@@ -15,7 +15,7 @@ if (empty($row)) {
 			<h1>Contact Seller</h1>
 			This listing is no longer available.
 		</div>
-	<?
+	<?php
 	require('bottom.php');
 	die();
 }
@@ -162,26 +162,26 @@ else
 
 <div id="content" style="background-image:url(images/bg_search.jpg);">
 <h1>Contact Seller</h1>
-<?=$error?>
-<form action="<?=$_SERVER['PHP_SELF']?>" method="post">
+<?php echo $error?>
+<form action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
 <div class="formcenter">
-<?=formEntry('Category:', $category ); ?>
-<?=formEntry("$title_label:", "<strong>$title</strong>$map_link" );?>
-<?=formEntry('Description:', $description ); ?>
-<?=formEntry("$price_label:", "$$price" ); ?>
-<?=formEntry("Time Posted:", $time ); ?>
-<?=formEntry('Message:', '<textarea name="message" cols="30" rows="8">'.$_COOKIE[seller_message].'</textarea>'); ?>
-<?=formEntry('Your Email:', '<input type="text" name="replyemail" style="width:160px;" value="'.$_COOKIE[user_email].'" />'); ?>
-<?=formEntry("$number1 + $number2 =", '<input type="text" name="sum" size="4" value="'.$sum.'" />'); ?>
+<?php echo formEntry('Category:', $category ); ?>
+<?php echo formEntry("$title_label:", "<strong>$title</strong>$map_link" );?>
+<?php echo formEntry('Description:', $description ); ?>
+<?php echo formEntry("$price_label:", "$$price" ); ?>
+<?php echo formEntry("Time Posted:", $time ); ?>
+<?php echo formEntry('Message:', '<textarea name="message" cols="30" rows="8">'.$_COOKIE[seller_message].'</textarea>'); ?>
+<?php echo formEntry('Your Email:', '<input type="text" name="replyemail" style="width:160px;" value="'.$_COOKIE[user_email].'" />'); ?>
+<?php echo formEntry("$number1 + $number2 =", '<input type="text" name="sum" size="4" value="'.$sum.'" />'); ?>
 <br />
 <input type="hidden" name="number1" value="<?php echo $number1 ?>"/>
 <input type="hidden" name="number2" value="<?php echo $number2 ?>"/>
 <input type="hidden" name="content" value="search"/>
-<input type="hidden" name="id" value="<?=$id?>"/>
+<input type="hidden" name="id" value="<?php echo $id?>"/>
 <div class="center"><input type="submit" name="submit" value="Send Message"/></div>
 
 </div>
 </form>
 </div>
 
-<? require('bottom.php'); ?>
+<?php require('bottom.php'); ?>

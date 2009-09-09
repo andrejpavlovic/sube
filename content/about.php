@@ -1,4 +1,4 @@
-<?
+<?php
 require('include/global_data.php');
 $html_title = 'About Us';
 require('top.php');
@@ -12,6 +12,6 @@ require('top.php');
 <p>UWSUBE is for looking volunteers to help with the promotion and continued maintanence of the exchange. Please see the join us section for more information.</p>
 </div>
 
-<?
+<?php
 require('bottom.php');
 ?>

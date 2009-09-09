@@ -1,4 +1,4 @@
-<?
+<?php
 if (!$_COOKIE[login]) {
   raise_error();
 }
@@ -31,14 +31,14 @@ if (isset($oldpass)) {
 ?>
 
 <p>Fill out the form below to change your password.</p>
-<form action="<?=$_SERVER[PHP_SELF]?>" method="post">
+<form action="<?php echo $_SERVER[PHP_SELF]?>" method="post">
 
 <div class="formcenter">
 
-<?=formEntry('Email:', $_COOKIE[login_email]); ?>
-<?=formEntry('Old password:', '<input type="password" name="oldpass" style="width:140px;" />'); ?>
-<?=formEntry('New password:', '<input type="password" name="pass[]" style="width:140px;" />'); ?>
-<?=formEntry('New password:<br/>(again)', '<input type="password" name="pass[]" style="width:140px;" />'); ?>
+<?php echo formEntry('Email:', $_COOKIE[login_email]); ?>
+<?php echo formEntry('Old password:', '<input type="password" name="oldpass" style="width:140px;" />'); ?>
+<?php echo formEntry('New password:', '<input type="password" name="pass[]" style="width:140px;" />'); ?>
+<?php echo formEntry('New password:<br/>(again)', '<input type="password" name="pass[]" style="width:140px;" />'); ?>
 
 <input type="hidden" name="content" value="my"/>
 <input type="hidden" name="type" value="chg"/>
@@ -47,7 +47,7 @@ if (isset($oldpass)) {
 </div>
 </form>
 <br />
-<? switch ($_GET['error']) {
+<?php switch ($_GET['error']) {
   case _ERR_PASS:
     echo '<span class="red">Invalid old password.</span>';
     break;

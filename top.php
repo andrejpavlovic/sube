@@ -1,4 +1,4 @@
-<?
+<?php
 // If the web browser supports xhtml, then update the header
 /*
 if ( stristr($_SERVER[HTTP_ACCEPT],"application/xhtml+xml") )
@@ -10,23 +10,23 @@ else
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-<title>UWSUBE - <?=$html_title?></title>
-<?
+<title>UWSUBE - <?php echo $html_title?></title>
+<?php
 if (!isset($html_meta_robots)) $html_meta_robots = 'index,follow';
 if (!isset($html_meta_description)) $html_meta_description = 'UWSUBE is an online textbook and housing exchange for Univeristy of Waterloo students.';
 if (!isset($html_meta_keywords)) $html_meta_keywords = 'waterloo, ontario, university of waterloo, UW, used books, course notes, students, exchange, buy, sell, listings, postings, UWSUBE, online, exchange, housing, courseware';
 ?>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<meta name="robots" content="<?=$html_meta_robots?>" />
-<meta name="description" content="<?=$html_meta_description?>" />
-<meta name="keywords" content="<?=$html_meta_keywords?>" />
+<meta name="robots" content="<?php echo $html_meta_robots?>" />
+<meta name="description" content="<?php echo $html_meta_description?>" />
+<meta name="keywords" content="<?php echo $html_meta_keywords?>" />
 
 <link rel="shortcut icon" href="images/favicon.ico" />
 <link rel="stylesheet" type="text/css" href="base.css" />
 <script src="wch.js" type="text/javascript"></script>
 
 </head>
-<body<? if (isset($content)) echo ' id="'.$content.'"' // this little bit of code allows for page-specific styles ?>>
+<body<?php if (isset($content)) echo ' id="'.$content.'"' // this little bit of code allows for page-specific styles ?>>
 
 <div id="container">
 
@@ -40,11 +40,11 @@ if (!isset($html_meta_keywords)) $html_meta_keywords = 'waterloo, ontario, unive
 <li style="width:128px;height:37px"><a href="index.php?content=my"><img alt="My UWSUBE" src="images/banner_05.jpg" /></a></li>
 <li style="width:165px;height:37px" onmouseover="WCH.Apply('drop1')" onmouseout="WCH.Discard('drop1')"><a href="index.php?content=post"><img alt="Submit a Posting" src="images/banner_06.jpg" /></a>
 		<ul style="width:165px" id='drop1'>
-      <li><a href="index.php?content=post&amp;cat=<?=_CW_BOOK?>"><?=$arrstrCW[_CW_BOOK]?></a></li>
-      <li><a href="index.php?content=post&amp;cat=<?=_CW_COURSE_NOTES?>"><?=$arrstrCW[_CW_COURSE_NOTES]?></a></li>
-      <li><a href="index.php?content=post&amp;cat=<?=_CW_HAND_NOTES?>"><?=$arrstrCW[_CW_HAND_NOTES]?></a></li>
-      <li><a href="index.php?content=post&amp;cat=<?=_CW_OTHER?>"><?=$arrstrCW[_CW_OTHER]?></a></li>
-      <li><a href="index.php?content=post&amp;cat=<?=_HOUSING?>"><?=$arrstrCW[_HOUSING]?></a></li>
+      <li><a href="index.php?content=post&amp;cat=<?php echo _CW_BOOK?>"><?php echo $arrstrCW[_CW_BOOK]?></a></li>
+      <li><a href="index.php?content=post&amp;cat=<?php echo _CW_COURSE_NOTES?>"><?php echo $arrstrCW[_CW_COURSE_NOTES]?></a></li>
+      <li><a href="index.php?content=post&amp;cat=<?php echo _CW_HAND_NOTES?>"><?php echo $arrstrCW[_CW_HAND_NOTES]?></a></li>
+      <li><a href="index.php?content=post&amp;cat=<?php echo _CW_OTHER?>"><?php echo $arrstrCW[_CW_OTHER]?></a></li>
+      <li><a href="index.php?content=post&amp;cat=<?php echo _HOUSING?>"><?php echo $arrstrCW[_HOUSING]?></a></li>
 		</ul>
 </li>
 <li style="width:107px;height:37px"><a href="index.php?content=join"><img alt="Join" src="images/banner_07.jpg" /></a></li>
@@ -56,5 +56,5 @@ if (!isset($html_meta_keywords)) $html_meta_keywords = 'waterloo, ontario, unive
 
 <div id="divider">
   <div id="left">
-  <? require("left.php"); ?>
+  <?php require("left.php"); ?>
   </div>

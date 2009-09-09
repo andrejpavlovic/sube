@@ -1,4 +1,4 @@
-<?
+<?php
 if (isset($_POST['cat'])) {
   require('content/post_validate.php');
   if ($form_error = validate_form(false)) {

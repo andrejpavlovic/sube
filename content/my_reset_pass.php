@@ -69,10 +69,10 @@ if (isset($_POST['email'])) {
 
 <p>Please enter your email address below. A new password will be sent to this email account. You can change your new password after logging into My UWSUBE.</p>
 
-<form action="<?=$_SERVER['PHP_SELF']?>" method="post">
+<form action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
 <div class="formcenter">
 
-<?=formEntry('Email:', '<input type="text" name="email" style="width:140px;" value="'.$user_email.'" />'); ?>
+<?php echo formEntry('Email:', '<input type="text" name="email" style="width:140px;" value="'.$user_email.'" />'); ?>
 <br />
 <input type="hidden" name="content" value="my"/>
 <input type="hidden" name="type" value="pass"/>
@@ -82,7 +82,7 @@ if (isset($_POST['email'])) {
 </form>
 <br />
 
-<? switch ($_GET['error']) {
+<?php switch ($_GET['error']) {
   case _ERR_EMAIL:
     echo '<p class="msg"><span class="red">Invalid email.</span></p>';
     break;
