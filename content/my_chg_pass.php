@@ -1,5 +1,5 @@
 <?php
-if (!$_COOKIE[login]) {
+if (!$_SESSION['login']) {
   raise_error();
 }
 
@@ -7,7 +7,7 @@ if (isset($oldpass)) {
 	// check the password
 	$query = sprintf("SELECT uid FROM %s WHERE email = '%s' AND password = '%s' LIMIT 1"
 		,_CW_TABLE_USERS
-		,$db->escape($_COOKIE['login_email'])
+		,$db->escape($_SESSION['login_email'])
 		,$db->escape(sha1($oldpass))
 	);
   $db->query( $query );
@@ -39,7 +39,7 @@ if (isset($oldpass)) {
 
 <div class="formcenter">
 
-<?php echo formEntry('Email:', $_COOKIE[login_email]); ?>
+<?php echo formEntry('Email:', $_SESSION['login_email']); ?>
 <?php echo formEntry('Old password:', '<input type="password" name="oldpass" style="width:140px;" />'); ?>
 <?php echo formEntry('New password:', '<input type="password" name="pass[]" style="width:140px;" />'); ?>
 <?php echo formEntry('New password:<br/>(again)', '<input type="password" name="pass[]" style="width:140px;" />'); ?>

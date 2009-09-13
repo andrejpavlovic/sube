@@ -31,7 +31,7 @@ switch ($_REQUEST['type']) {
 
     if (validate_email($email)) {
       // check the password
-      $query = 'SELECT password, uid FROM '._CW_TABLE_USERS." WHERE email = '%s' LIMIT 1";
+      $query = 'SELECT password, uid, email FROM '._CW_TABLE_USERS." WHERE email = '%s' LIMIT 1";
       $db->query( $db->safesql($query, array($email)) );
 
       if ($db->num_rows() <= 0)
@@ -41,9 +41,9 @@ switch ($_REQUEST['type']) {
       
       $pass = sha1($pass);
       if ( 0 == strcmp($pass,$row[password]) ) {
-        setcookie('login', true, time()+86400);
-        setcookie('login_email', $email, time()+86400);
-        setcookie('login_uid', $row['uid'], time()+86400);
+      	$_SESSION['login'] = true;
+      	$_SESSION['login_email'] = $row['email'];
+      	$_SESSION['login_uid'] = $row['uid'];
         require('content/my_postings.php');
       } else {
         raise_error(_ERR_PASS);
@@ -62,13 +62,11 @@ switch ($_REQUEST['type']) {
     require('content/my_chg_pass.php');
     break;
   case 'logout':
-    setcookie('login', false, 0);
-    setcookie('login_email', '', 0);
-    setcookie('login_uid', '', 0);
+  	session_destroy();
     raise_error(_SUCCESS_LOGOUT);
     break;
   default:
-    if ($_COOKIE['login']) {
+    if ($_SESSION['login']) {
       require('content/my_postings.php');
     } else {
       ?>

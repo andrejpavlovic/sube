@@ -1,4 +1,8 @@
 <?php
+if (!$_SESSION['login']) {
+  raise_error();
+}
+
 if (isset($_POST['cat'])) {
   require('content/post_validate.php');
   if ($form_error = validate_form(false)) {
@@ -10,7 +14,7 @@ if (isset($_POST['cat'])) {
     $query = 'UPDATE '._CW_TABLE.' SET '
       ."time = '$time', category = '%s', price = %f, description = '%s'"
       ."[,title = '%S'][,isbn = '%S'][,term = '%S'][,year = '%S'][,vacancies = %I]"
-      .' WHERE listid = %i AND uid = '.$_COOKIE['login_uid'];
+      .' WHERE listid = %i AND uid = '.$_SESSION['login_uid'];
     $db->query( $db->safesql($query, array($cat, $price, $desc, $title, $cw_isbn, $term, $year, $vacancies, $listid)) );
 
     // remove all courses from the courses table
@@ -31,7 +35,7 @@ if (isset($_POST['cat'])) {
 } else {
 
 $query = 'SELECT title, category, description, isbn, price, term, year,vacancies FROM '._CW_TABLE
-  .' WHERE listid = %i AND uid = '.$_COOKIE['login_uid'].' LIMIT 1';
+  .' WHERE listid = %i AND uid = '.$_SESSION['login_uid'].' LIMIT 1';
 
 $db->query( $db->safesql($query, array($_GET['id'])) );
 
@@ -71,7 +75,7 @@ while ($row2 = $db->fetch_array()) {
   $cnum[] = $row2['number'];
 }
 
-$_COOKIE['user_email'] = $_COOKIE['login_email'];
+$_COOKIE['user_email'] = $_SESSION['login_email'];
 
 edit_posting($_GET['id']);
 }

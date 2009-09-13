@@ -1,12 +1,5 @@
 <?php
-// If the web browser supports xhtml, then update the header
-/*
-if ( stristr($_SERVER[HTTP_ACCEPT],"application/xhtml+xml") )
-  header("Content-type: application/xhtml+xml");
-else
-  header("Content-type: text/html");
-*/
-
+session_start();
 
 // For server side buffering.
 // This is to avoid modifying headers after being already sent.
@@ -46,4 +39,3 @@ switch($_REQUEST['content']) {
 // For server side buffering.
 // This is to avoid modifying headers after being already sent.
 ob_end_flush();
-?>

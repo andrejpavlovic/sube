@@ -1,5 +1,5 @@
 <?php
-if (!$_COOKIE['login']) {
+if (!$_SESSION['login']) {
   raise_error();
 }
 
@@ -14,7 +14,7 @@ switch ($action) {
 
 $logout_link = '<a href="index.php?content=my&amp;type=logout">Logout</a>';
 
-echo '<p>Welcome '.$_COOKIE['login_email'].'! ('.$logout_link.') (<a href="index.php?content=my&amp;type=chg">Change password</a>)</p>';
+echo '<p>Welcome '.$_SESSION['login_email'].'! ('.$logout_link.') (<a href="index.php?content=my&amp;type=chg">Change password</a>)</p>';
 
 switch ($_GET['error']) {
   case _SUCCESS:
@@ -33,7 +33,7 @@ require_once('include/table.php');
 
 /* This may be a security problem, selecting on the contents of the cookie. Just have to make sure that 
    the logged-in state is being checked on every pageview. (we could be using $_SESSION also...) */
-$rs_postings = $db->query('SELECT listid, title, category, description, isbn, price, term, vacancies, year FROM '._CW_TABLE." WHERE uid = ".$_COOKIE['login_uid'].' AND remove = 0');
+$rs_postings = $db->query('SELECT listid, title, category, description, isbn, price, term, vacancies, year FROM '._CW_TABLE." WHERE uid = ".$_SESSION['login_uid'].' AND remove = 0');
 
 if ($db->num_rows($rs_postings) > 0) {
 

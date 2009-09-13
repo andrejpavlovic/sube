@@ -1,5 +1,5 @@
 <?php
-if (!$_COOKIE['login']) {
+if (!$_SESSION['login']) {
   raise_error();
 }
 
@@ -9,7 +9,7 @@ define('_NO', 'No');
 if (isset($_POST['submit'])) {
   switch ($_POST['submit']) {
     case _YES:
-      $query = 'UPDATE '._CW_TABLE.' SET remove = 1 WHERE listid = %i AND uid = '.$_COOKIE['login_uid'];
+      $query = 'UPDATE '._CW_TABLE.' SET remove = 1 WHERE listid = %i AND uid = '.$_SESSION['login_uid'];
       $db->query( $db->safesql($query, array($_POST['id'])) );
 
       if ($db->affected_rows() < 1)
@@ -24,13 +24,13 @@ if (isset($_POST['submit'])) {
 /*$query = 'SELECT title, category, description, price, term, year, course, number, vacancies'
   .' FROM '._CW_TABLE.','._CW_TABLE_COURSES
   .' WHERE '._CW_TABLE.'.listid = '._CW_TABLE_COURSES.'.listid'
-  .' AND uid = '.$_COOKIE['login_uid'].' AND '._CW_TABLE.'.listid = %i LIMIT 1';*/
+  .' AND uid = '.$_SESSION['login_uid'].' AND '._CW_TABLE.'.listid = %i LIMIT 1';*/
 
 // This improved query will still return CW records even without _COURSES records present.
 $query = 'SELECT title, category, description, price, term, year, course, number, vacancies'
   .' FROM '._CW_TABLE
   .' LEFT JOIN '._CW_TABLE_COURSES.' ON '._CW_TABLE.'.listid = '._CW_TABLE_COURSES.'.listid'
-  .' WHERE uid = '.$_COOKIE['login_uid'].' AND '._CW_TABLE.'.listid = %i LIMIT 1';
+  .' WHERE uid = '.$_SESSION['login_uid'].' AND '._CW_TABLE.'.listid = %i LIMIT 1';
 
 
 $db->query( $db->safesql($query, array($_GET['id'])) );
