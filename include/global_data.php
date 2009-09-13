@@ -62,7 +62,7 @@ define('_FAIL_SELECT', -31); // failed to select recordset
 define('_FAIL_INSERT', -32); // failed to insert record
 
 // Define content
-define('_INVALID_PASSWORD', 'You must enter a password without blank spaces, and between 4 and 10 characters in length.');
+define('_INVALID_PASSWORD', 'You must enter a password between 4 and 10 characters in length.');
 define('_POSTING_PERIOD', 6);
 
 // Define constants for search results

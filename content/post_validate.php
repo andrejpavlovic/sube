@@ -102,9 +102,10 @@ function isEmptyTrim(&$string) {
   return false;
 }
 
-// Check that password is not empty, has no spaces at beginning or end, 4-10 chars in length
+// Check that password is not empty, 4-10 chars in length
 function validate_pass($pass) {
-  if (!preg_match('/^[0-9a-z]{4,10}$/i', $pass))
+  $pass_len = strlen($pass);
+  if ($pass_len < 4 || $pass_len > 10)
     return _INVALID_PASSWORD;
   else
     return '';
