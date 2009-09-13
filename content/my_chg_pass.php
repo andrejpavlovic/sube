@@ -4,8 +4,12 @@ if (!$_COOKIE[login]) {
 }
 
 if (isset($oldpass)) {
-  // check the password
-  $query = 'SELECT uid FROM '._CW_TABLE_USERS." WHERE password = '".sha1($oldpass)."' LIMIT 1";
+	// check the password
+	$query = sprintf("SELECT uid FROM %s WHERE email = '%s' AND password = '%s' LIMIT 1"
+		,_CW_TABLE_USERS
+		,$db->escape($_COOKIE['login_email'])
+		,$db->escape(sha1($oldpass))
+	);
   $db->query( $query );
 
   if ($db->num_rows() <= 0)

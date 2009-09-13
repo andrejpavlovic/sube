@@ -19,6 +19,11 @@ class SQLLayer {
 		$this->connect();
 	}
 	
+	function escape($s)
+	{
+		return mysql_real_escape_string($s, $this->link);
+	}
+	
 	function connect() {
     $err_level = ini_get('error_reporting');
     error_reporting(0);
