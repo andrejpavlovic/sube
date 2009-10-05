@@ -31,7 +31,7 @@ $five_postings_table = format_results ($db->query($five_postings_query));
 //------------ End Five Latest Postings ----
 
 require_once('include/global_data.php');
-$html_title = 'Latest News';
+$html_title = 'University of Waterloo - Used Textbooks and Housing';
 require('top.php');
 ?>
 

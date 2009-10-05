@@ -10,10 +10,10 @@ else
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-<title>UWSUBE - <?php echo $html_title?></title>
+<title><?php echo $html_title?> - UWSUBE</title>
 <?php
 if (!isset($html_meta_robots)) $html_meta_robots = 'index,follow';
-if (!isset($html_meta_description)) $html_meta_description = 'UWSUBE is an online textbook and housing exchange for Univeristy of Waterloo students.';
+if (!isset($html_meta_description)) $html_meta_description = 'UWSUBE is an online textbook and housing exchange for University of Waterloo students.';
 if (!isset($html_meta_keywords)) $html_meta_keywords = 'waterloo, ontario, university of waterloo, UW, used books, course notes, students, exchange, buy, sell, listings, postings, UWSUBE, online, exchange, housing, courseware';
 ?>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
