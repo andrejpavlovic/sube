@@ -37,7 +37,7 @@ require('top.php');
 
 <div id="content" style="background-image:url(images/bg_news.jpg);">
 
-<h1>Latest News</h1>
+<h1>Used Textbooks and Housing Exchange</h1>
 
 <p>
 	Students bought over <span class="style2"><?php echo number_format($books_sold[number], 0, '.', ',')?></span>
