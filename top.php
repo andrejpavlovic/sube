@@ -17,9 +17,9 @@ if (!isset($html_meta_description)) $html_meta_description = 'UWSUBE is a used b
 if (!isset($html_meta_keywords)) $html_meta_keywords = 'waterloo, ontario, university of waterloo, UW, used books, course notes, students, exchange, buy, sell, listings, postings, UWSUBE, online, exchange, housing, courseware';
 ?>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<meta name="robots" content="<?php echo htmlspecialchars($html_meta_robots)?>" />
-<meta name="description" content="<?php echo htmlspecialchars($html_meta_description)?>" />
-<meta name="keywords" content="<?php echo htmlspecialchars($html_meta_keywords)?>" />
+<meta name="robots" content="<?php echo $html_meta_robots?>" />
+<meta name="description" content="<?php echo $html_meta_description?>" />
+<meta name="keywords" content="<?php echo $html_meta_keywords?>" />
 
 <link rel="shortcut icon" href="images/favicon.ico" />
 <link rel="stylesheet" type="text/css" href="base.css" />
