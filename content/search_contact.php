@@ -56,7 +56,7 @@ switch ($row[category]) {
 // ----------------------------------------------
 
 if (isset($_POST['submit'])) {
-  $replyemail = htmlspecialchars(stripslashes($_POST['replyemail']));
+  $replyemail = $_POST['replyemail'];
   $number1 = intval($_POST['number1']);
   $number2 = intval($_POST['number2']);
   $sum = intval($_POST['sum']);
@@ -136,7 +136,7 @@ if (isset($_POST['submit'])) {
 } // form submit, email end
 
 
-$id = htmlspecialchars(stripslashes($_GET['id']));
+$id = abs(intval($_GET['id']));
 
 $html_meta_robots = 'index,nofollow';
 $html_meta_description = htmlentities(substr(html_entity_decode($description), 0, 180)) . '...';
@@ -144,7 +144,7 @@ require('top.php');
 
 // Give link to google maps for housing postings
 if ($row[category] == _HOUSING)
-	$map_link = '&nbsp;<a href="http://maps.google.ca/maps?q='.$title.'+Waterloo+Ontario" target="_blank">Map</a>';
+	$map_link = '&nbsp;<a href="http://maps.google.ca/maps?q='.htmlspecialchars($title).'+Waterloo+Ontario" target="_blank">Map</a>';
 
 if (!isset($_COOKIE['number1']))
 {
@@ -165,19 +165,19 @@ else
 <?php echo $error?>
 <form action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
 <div class="formcenter">
-<?php echo formEntry('Category:', $category ); ?>
-<?php echo formEntry("$title_label:", "<strong>$title</strong>$map_link" );?>
-<?php echo formEntry('Description:', $description ); ?>
+<?php echo formEntry('Category:', htmlspecialchars($category) ); ?>
+<?php echo formEntry("$title_label:", "<strong>".htmlspecialchars($title)."</strong>$map_link" );?>
+<?php echo formEntry('Description:', htmlspecialchars($description) ); ?>
 <?php echo formEntry("$price_label:", "$$price" ); ?>
-<?php echo formEntry("Time Posted:", $time ); ?>
-<?php echo formEntry('Message:', '<textarea name="message" cols="30" rows="8">'.$_COOKIE[seller_message].'</textarea>'); ?>
-<?php echo formEntry('Your Email:', '<input type="text" name="replyemail" style="width:160px;" value="'.$_COOKIE[user_email].'" />'); ?>
-<?php echo formEntry("$number1 + $number2 =", '<input type="text" name="sum" size="4" value="'.$sum.'" />'); ?>
+<?php echo formEntry("Time Posted:", htmlspecialchars($time) ); ?>
+<?php echo formEntry('Message:', '<textarea name="message" cols="30" rows="8">'.htmlspecialchars($_COOKIE[seller_message]).'</textarea>'); ?>
+<?php echo formEntry('Your Email:', '<input type="text" name="replyemail" style="width:160px;" value="'.htmlspecialchars($_COOKIE[user_email]).'" />'); ?>
+<?php echo formEntry("$number1 + $number2 =", '<input type="text" name="sum" size="4" value="'.htmlspecialchars($sum).'" />'); ?>
 <br />
 <input type="hidden" name="number1" value="<?php echo $number1 ?>"/>
 <input type="hidden" name="number2" value="<?php echo $number2 ?>"/>
 <input type="hidden" name="content" value="search"/>
-<input type="hidden" name="id" value="<?php echo $id?>"/>
+<input type="hidden" name="id" value="<?php echo htmlspecialchars($id)?>"/>
 <div class="center"><input type="submit" name="submit" value="Send Message"/></div>
 
 </div>
