@@ -31,20 +31,19 @@ $five_postings_table = format_results ($db->query($five_postings_query));
 //------------ End Five Latest Postings ----
 
 require_once('include/global_data.php');
-$html_title = 'University of Waterloo - Used Textbooks and Housing';
 require('top.php');
 ?>
 
 <div id="content" style="background-image:url(images/bg_news.jpg);">
 
-<h1>Used Textbooks and Housing Exchange</h1>
+<h1>Used Books and Housing Exchange</h1>
 
 <p>
 	Students bought over <span class="style2"><?php echo number_format($books_sold[number], 0, '.', ',')?></span>
-	courseware items (books, course notes, etc.) last year worth almost
+	courseware items (used books, course notes, etc.) last year worth almost
 	<span class="style2">$<?php echo number_format($books_sold[value], 2, '.', ',')?></span>!
 	This year we hope to double that amount while constantly increasing the usability of our site.
-	Founded and maintained by University of Waterloo students, UWSUBE allows you to buy/sell books,
+	Founded and maintained by University of Waterloo students, UWSUBE allows you to buy/sell used books,
 	course notes, handwritten notes, and housing absolutely <span class="style1">FREE</span>!
 </p> 
 <p>

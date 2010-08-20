@@ -43,13 +43,14 @@ background-repeat: no-repeat;
 min-height:440px;
 }
 
-div#bottom {
+#bottom {
 clear: both;
 width: 100%;
 padding-top:9px;
 margin-top:5px;
 background-image: url(images/bot_banner.jpg);
 background-repeat: repeat-x;
+color:#999;
 }
 
 p, h1, h2, h3, h4, form {
@@ -344,20 +345,6 @@ line-height:15px;
 
 #nav li:hover ul { /* lists nested under hovered list items */
 left: auto;
-}
-
-div#supporters {
-float:right;
-margin-top:2px;
-margin-right:10px;
-border:1px solid #75C147;
-}
-
-div#supporters a {
-color:#325781;
-text-decoration:none;
-display:block;
-padding:6px 3px 7px 3px;
 }
 
 div.fineprint {
