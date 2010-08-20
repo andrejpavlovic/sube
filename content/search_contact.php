@@ -144,7 +144,7 @@ require('top.php');
 
 // Give link to google maps for housing postings
 if ($row[category] == _HOUSING)
-	$map_link = '&nbsp;<a href="http://maps.google.ca/maps?q='.htmlspecialchars($title).'+Waterloo+Ontario" target="_blank">Map</a>';
+	$map_link = '&nbsp;<a href="http://maps.google.ca/maps?q='.$title.'+Waterloo+Ontario" target="_blank">Map</a>';
 
 if (!isset($_COOKIE['number1']))
 {
@@ -166,8 +166,8 @@ else
 <form action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
 <div class="formcenter">
 <?php echo formEntry('Category:', htmlspecialchars($category) ); ?>
-<?php echo formEntry("$title_label:", "<strong>".htmlspecialchars($title)."</strong>$map_link" );?>
-<?php echo formEntry('Description:', htmlspecialchars($description) ); ?>
+<?php echo formEntry("$title_label:", "<strong>".$title."</strong>$map_link" );?>
+<?php echo formEntry('Description:', $description ); ?>
 <?php echo formEntry("$price_label:", "$$price" ); ?>
 <?php echo formEntry("Time Posted:", htmlspecialchars($time) ); ?>
 <?php echo formEntry('Message:', '<textarea name="message" cols="30" rows="8">'.htmlspecialchars($_COOKIE[seller_message]).'</textarea>'); ?>

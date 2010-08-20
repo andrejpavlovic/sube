@@ -62,7 +62,7 @@ $table = array('desc' => array('Description'), 'price' => array('Rent'), 'action
 
   $row['description'] = wordwrap($row[description], 50, ' ', 1);
 
-		array_push($table['desc'], '<h3>'.htmlspecialchars($row['title']).'</h3><p class="desc">'.htmlspecialchars($row['description']).'</p><p class="details">Term: '.$row['term'].' '.$row['year'].' &#8212; Vacancies: '.$row['vacancies'].'</p>');
+		array_push($table['desc'], '<h3>'.$row['title'].'</h3><p class="desc">'.$row['description'].'</p><p class="details">Term: '.$row['term'].' '.$row['year'].' &#8212; Vacancies: '.$row['vacancies'].'</p>');
 
     array_push($table['price'], '$' . number_format($row['price'], 2));
     array_push($table['actions'], '<div class="mybutton"><a href="'.$_SERVER[PHP_SELF]
