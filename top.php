@@ -37,7 +37,7 @@ if (!isset($html_meta_keywords)) $html_meta_keywords = 'waterloo, ontario, unive
 </div>
 <ul id="nav">
 <li style="width:105px;height:37px"><a href="index.php?content=news"><img alt="News" src="images/banner_04.jpg" /></a></li>
-<li style="width:128px;height:37px"><a href="index.php?content=my"><img alt="My UWSUBE" src="images/banner_05.jpg" /></a></li>
+<li style="width:128px;height:37px"><a href="index.php?content=my"><img alt="My Account" src="images/banner_05.jpg" /></a></li>
 <li style="width:165px;height:37px" onmouseover="WCH.Apply('drop1')" onmouseout="WCH.Discard('drop1')"><a href="index.php?content=post"><img alt="Submit a Posting" src="images/banner_06.jpg" /></a>
 		<ul style="width:165px" id='drop1'>
       <li><a href="index.php?content=post&amp;cat=<?php echo _CW_BOOK?>"><?php echo $arrstrCW[_CW_BOOK]?></a></li>

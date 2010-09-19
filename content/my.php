@@ -11,12 +11,12 @@ function raise_error($err = '', $type = '') {
 }
 
 require('include/global_data.php');
-$html_title = 'My UWSUBE';
+$html_title = 'My Account';
 require('top.php');
 ?>
 
 <div id="content" style="background-image:url(images/bg_my.jpg);">
-<h1>My UWSUBE</h1>
+<h1>My Account</h1>
 
 <?php
 switch ($_REQUEST['type']) {
