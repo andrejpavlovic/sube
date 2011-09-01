@@ -106,7 +106,7 @@ if (isset($_POST['submit'])) {
 		->setSubject($subject)
 		->setFrom($replyemail)
 		->setSender(array(_EMAIL_FROM_ADDRESS => _EMAIL_FROM_NAME))
-		->setReturnPath(_EMAIL_ERROR_ADDRESS)
+		//->setReturnPath(_EMAIL_ERROR_ADDRESS)
 		->setTo($email)
 		->setBody($body)
 	;
