@@ -43,7 +43,7 @@ The email is:
 <tr><td>info</td><td>at</td><td>uwsube</td><td>dot</td><td>com</td></tr>
 </table>
 
-<p style="padding-top:10px;">NOTE: If you don't receive a response within 1-2 days, it means we have read your email, and decided not to act on it.</p>
+<p style="padding-top:10px;">NOTE: Please ask a friend for help before emailing us if possible. This is a pro bono service and answering individual questions can be very taxing on our resources.</p>
 
 
 <h1 style="padding-top:20px;">Banners</h1>
