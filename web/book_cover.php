@@ -3,8 +3,10 @@
 require 'include/global_data.php';
 require dirname(__FILE__) . DIRECTORY_SEPARATOR . 'include' . DIRECTORY_SEPARATOR . 'libs' . DIRECTORY_SEPARATOR . 'soap-wsse.php';
 
-define('PRIVATE_KEY', dirname(__FILE__) . DIRECTORY_SEPARATOR . 'include' . DIRECTORY_SEPARATOR . 'pk-amazon-private-key.pem');
-define('CERT_FILE', dirname(__FILE__) . DIRECTORY_SEPARATOR . 'include' . DIRECTORY_SEPARATOR . 'cert-amazon-cert.pem');
+if (!_AMAZON_ENABLED) {
+	header("Status: 403 Forbidden");
+	die();
+}
 
 // Code from: http://www.cdatazone.org/index.php?/pages/source.html
 class mySoap extends SoapClient {
@@ -22,13 +24,13 @@ class mySoap extends SoapClient {
     $objKey = new XMLSecurityKey(XMLSecurityKey::RSA_SHA1, array('type'=>'private'));
 
     /* load the private key from file - last arg is bool if key in file (TRUE) or is string (FALSE) */
-    $objKey->loadKey(PRIVATE_KEY, TRUE);
+    $objKey->loadKey(_AMAZON_PRIVATE_KEY, TRUE);
 
     /* Sign the message - also signs appropraite WS-Security items */
     $objWSSE->signSoapDoc($objKey);
 
     /* Add certificate (BinarySecurityToken) to the message and attach pointer to Signature */
-    $token = $objWSSE->addBinaryToken(file_get_contents(CERT_FILE));
+    $token = $objWSSE->addBinaryToken(file_get_contents(_AMAZON_CERT_FILE));
     $objWSSE->attachTokentoSig($token);
     return parent::__doRequest($objWSSE->saveXML(), $location, $saction, $version);
    }
@@ -55,9 +57,10 @@ if (!file_exists($cached_file))
 	}
 	
 	$params = array(
-		'AWSAccessKeyId' => 'AKIAIM2T4FM6QWJDHDZQ',
+		'AWSAccessKeyId' => _AMAZON_AWS_ACCESS_KEY_ID,
 		'Operation' => 'ItemLookup',
 		'Request' => $request,
+		'AssociateTag' => _AMAZON_ASSOCIATE_TAG,
 	);
 	
 	$books = $client->ItemLookup($params);

@@ -75,7 +75,10 @@ class TableResult {
     switch ($row['category']) {
       case _CW_BOOK:
         $this->table[desc][] = '<h3>'.$row[title].'</h3><p class="desc">'.$row[description].'</p><p class="details">ISBN: '.htmlspecialchars($row[isbn]).'</p>';
-        $this->table[cat][] = sprintf('<img src="book_cover.php?isbn=%s" alt="Books" />', htmlspecialchars($row['isbn']));
+        
+        $this->table[cat][] = (!_AMAZON_ENABLED)
+          ? htmlspecialchars('Books')
+          : sprintf('<img src="book_cover.php?isbn=%s" alt="Books" />', htmlspecialchars($row['isbn']));
         break;
       case _CW_COURSE_NOTES: case _CW_HAND_NOTES:
         $this->table[desc][] = '<h3><span style="font-size:10px">from</span> '.htmlspecialchars($row[term]).' '.htmlspecialchars($row[year]).'</h3><p class="desc">'.$row[description].'</p>';
