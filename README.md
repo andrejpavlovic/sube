@@ -21,11 +21,16 @@ Getting Started
 
   1. Copy the files from the [web folder](https://github.com/andrejpavlovic/sube/tree/master/web) into the document root on your server.
   
-  2. Ensure that *cache/book_covers* folder is writable by the server.
+  2. Create a MySQL database and generate table data by running the SQL script found in [database/install.sql](https://github.com/andrejpavlovic/sube/blob/master/install/database.sql).
   
-  3. Create a MySQL database and generate table data by running the SQL script found in [database/install.sql](https://github.com/andrejpavlovic/sube/blob/master/install/database.sql).
+  3. Update the database connection and email settings inside of [web/include/settings.php](https://github.com/andrejpavlovic/sube/blob/master/web/include/settings.php).
   
-  4. Update the database connection and email settings inside of [web/include/settings.php](https://github.com/andrejpavlovic/sube/blob/master/web/include/settings.php).
+  4. If you also want the book covers to show up, you need to ensure that *cache/book_covers* folder is writable by the server and configure Amazon API access in [web/include/settings.php](https://github.com/andrejpavlovic/sube/blob/master/web/include/settings.php). This means you will need to:
+    1. Enable the feature
+    2. Register for [Amazon Web Services](http://aws.amazon.com/)
+    3. Update the key ID
+    4. Generate/update [private key and cert files](https://github.com/andrejpavlovic/sube/tree/master/web/include/amazon).
+    5. Register to for [Amazon Affiliate Program](https://affiliate-program.amazon.com/) to receive the associate tag.
 
 Backend Management
 --------
