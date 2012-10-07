@@ -28,9 +28,9 @@ Getting Started
   4. If you also want the book covers to show up, you need to ensure that *cache/book_covers* folder is writable by the server and configure Amazon API access in [web/include/settings.php](https://github.com/andrejpavlovic/sube/blob/master/web/include/settings.php). This means you will need to:
     1. Enable the feature
     2. Register for [Amazon Web Services](http://aws.amazon.com/)
-    3. Update the key ID
+    3. Update the AWS key ID
     4. Generate/update [private key and cert files](https://github.com/andrejpavlovic/sube/tree/master/web/include/amazon).
-    5. Register to for [Amazon Affiliate Program](https://affiliate-program.amazon.com/) to receive the associate tag.
+    5. Register for the [Amazon Affiliate Program](https://affiliate-program.amazon.com/) to receive the associate tag.
 
 Backend Management
 --------

@@ -14,6 +14,10 @@ define('_EMAIL_SUPPORT_ADDRESS', 'info@localhost');
 
 // Define mailer settings
 define('_MAILER_TYPE', 'mail');
+//define('_MAILER_TYPE', 'sendmail');
+//define('_MAILER_SENDMAIL_CMD', '/usr/sbin/sendmail -t');
+//define('_MAILER_TYPE', 'smtp');
+//define('_MAILER_SMTP_HOST', '127.0.0.1');
 
 // Define amazon api settings
 define('_AMAZON_ENABLED', false);
