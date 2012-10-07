@@ -37,7 +37,7 @@ Take a look at the [SQL queries](https://github.com/andrejpavlovic/sube/blob/mas
 Background
 --------
 
-In 2005, [UWSUBE](http://www.uwsube.com/) was designed and developed by a couple of University of Waterloo undergraduate students. Since then, thousands of UW students have used it to buy/sell books and find off-campus housing. Since there have been a lot of requests over the years to allow others to setup a similar service, it was decided to post the code on GitHub, and allow anyone use or contribute to the existing codebase.
+In 2004, [UWSUBE](http://www.uwsube.com/) was designed and developed by a couple of University of Waterloo undergraduate students. Since then, thousands of UW students have used it to buy/sell books and find off-campus housing. Since there have been a lot of requests over the years to allow others to setup a similar service, it was decided to post the code on GitHub, and allow anyone use or contribute to the existing codebase.
 
 Development
 --------
