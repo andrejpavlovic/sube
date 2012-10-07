@@ -20,6 +20,10 @@ class MyMailer
 					$transport = Swift_SmtpTransport::newInstance(_MAILER_SMTP_HOST);
 					break;
 					
+				case 'mail':
+					$transport = Swift_MailTransport::newInstance();
+					break;
+					
 				default:
 					throw new Exception('Unknown mailer type: ' . _MAILER_TYPE);
 			}

@@ -25,7 +25,7 @@ Getting Started
   
   3. Create a MySQL database and generate table data by running the SQL script found in [install/database.sql](https://github.com/andrejpavlovic/sube/blob/master/install/database.sql)
   
-  4. Update the database connection and other settings inside of [web/include/settings.php](https://github.com/andrejpavlovic/sube/blob/master/web/include/settings.php)
+  4. Update the database connection and email settings inside of [web/include/settings.php](https://github.com/andrejpavlovic/sube/blob/master/web/include/settings.php)
 
 Backend Management
 --------
