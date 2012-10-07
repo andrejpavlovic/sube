@@ -21,11 +21,11 @@ Getting Started
 
   1. Copy the files from the [web folder](https://github.com/andrejpavlovic/sube/tree/master/web) into the document root on your server.
   
-  2. Create a MySQL database and generate table data by running the SQL script found in [install/database.sql](https://github.com/andrejpavlovic/sube/blob/master/install/database.sql)
+  2. Ensure that *cache/book_covers* folder is writable by the server.
   
-  3. Update the database connection and other settings inside of [web/include/settings.php](https://github.com/andrejpavlovic/sube/blob/master/web/include/settings.php)
-
-  4. The site should now be up!
+  3. Create a MySQL database and generate table data by running the SQL script found in [install/database.sql](https://github.com/andrejpavlovic/sube/blob/master/install/database.sql)
+  
+  4. Update the database connection and other settings inside of [web/include/settings.php](https://github.com/andrejpavlovic/sube/blob/master/web/include/settings.php)
 
 Backend Management
 --------
